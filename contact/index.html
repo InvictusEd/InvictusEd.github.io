@@ -37,6 +37,16 @@
 
 
 
+   <style>
+    body{
+       background-image: url(https://invictusqiu.oss-cn-beijing.aliyuncs.com/background.jpg);
+       background-repeat:no-repeat;
+       background-size: 100% 100%;
+       background-attachment:fixed;
+    }
+</style>
+
+
 
 <body>
     <header class="navbar-fixed">
@@ -333,9 +343,9 @@
                     var typed = new Typed("#subtitle", {
                         strings: [ 
                             
-                                "从来没有真正的绝境, 只有心灵的迷途",
+                                "只要有人还能呼吸、有人还能见证，这首赞歌就会流传，并赋予你生命",
                             
-                                "Never really desperate, only the lost of the soul",
+                                "So long as men can breathe or eyes can see, So long lives this, and this gives life to thee",
                             
                         ],
                         startDelay: 300,
@@ -390,12 +400,12 @@
             
                 <p>
                     <b>畅所欲言</b><br>
-                    <b>在这里可以留下你的足迹，欢迎在下方留言，欢迎交换友链</b><br>
+                    <b>罗曼·罗兰曾说过：有了朋友，生命才显出它全部的价值。在这里可以留下你的足迹，欢迎在下方留言，欢迎交换友链</b><br>
                     <b>友链信息</b><br>
                     <b>博客名称: Makuvi湫</b><br>
                     <b>博客网址: http://invictusqiu.com</b><br>
                     <b>博客头像: http://invictusqiu.com/medias/logo.png</b><br>
-                    <b>博客介绍: 犹豫就会败北</b><br>
+                    <b>博客介绍: 所及之处 星光璀璨</b><br>
                 </p>
                 <div class="container">
                     <section id="custom" class="bb-section">
@@ -424,47 +434,48 @@
                 <script type="text/javascript">
                     AV.init({
                         appId: '6Iggw1EQWpGIh0taRG20u1is-gzGzoHsz',
-                        appKey: 'DBqwdsXt5fgsb8Y4NNvlWwM4'
-                    });
+                        appKey: 'DBqwdsXt5fgsb8Y4NNvlWwM4
+							'
+							});
 
-                    $(function() {
-                        do_barrager();
-                        async function do_barrager() {
-                            let lists = [];
-                            //查询弹幕
-                            const query = new AV.Query('barrager');
-                            const barrager = await query.find().then((barrager) => {
-                                lists = barrager;
-                            })
-                            let length = lists.length;
-                            let index = 0;
-                            const timer = setInterval(() => {
-                                if (index === length) {
-                                    clearInterval(timer);
-                                    do_barrager()
-                                } else {
-                                    let obj = lists[index]
-                                    let jsonObject = eval('(' + JSON.stringify(obj) + ')');
-                                    $('body').barrager({
-                                        'img': '/medias/barrager/' + Math.floor(Math.random() * 3) + ".png",
-                                        'href': jsonObject.href,
-                                        'info': jsonObject.info,
-                                        'speed': jsonObject.speed
-                                    });
-                                    index++;
-                                }
-                            }, 500)
-                        }
-                    });
+							$(function() {
+							do_barrager();
+							async function do_barrager() {
+							let lists = [];
+							//查询弹幕
+							const query = new AV.Query('barrager');
+							const barrager = await query.find().then((barrager) => {
+							lists = barrager;
+							})
+							let length = lists.length;
+							let index = 0;
+							const timer = setInterval(() => {
+							if (index === length) {
+							clearInterval(timer);
+							do_barrager()
+							} else {
+							let obj = lists[index]
+							let jsonObject = eval('(' + JSON.stringify(obj) + ')');
+							$('body').barrager({
+							'img': '/medias/barrager/' + Math.floor(Math.random() * 3) + ".png",
+							'href': jsonObject.href,
+							'info': jsonObject.info,
+							'speed': jsonObject.speed
+							});
+							index++;
+							}
+							}, 500)
+							}
+							});
 
-                    //发送弹幕
-                    function  run(){
-                        let info = $('input[name=info]').val();
-                        (info === '' ) ?  info='hello world' : info=info;
-                        let href = $('input[name=href]').val();
-                        (href === '' ) ?  href='https://github.com/blinkfox/hexo-theme-matery' : href=href;
-                        let speed = parseInt($('input[name=speed]').val());
-                        if(speed > 20 || speed < 5)
+							//发送弹幕
+							function  run(){
+							let info = $('input[name=info]').val();
+							(info === '' ) ?  info='hello world' : info=info;
+							let href = $('input[name=href]').val();
+							(href === '' ) ?  href='[选填] https://invictusqiu.com（请留下你的地址吧）' : href=href;
+							let speed = parseInt($('input[name=speed]').val());
+							if(speed > 20 || speed < 5)
                             speed = Math.floor(Math.random() * 10) + 5;
                         const Barrager = AV.Object.extend('barrager');
                         const barrager = new Barrager();
@@ -568,11 +579,11 @@
     
 
     <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
+         style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2022</span>
+                <span id="year">2022</span>
             
             <a href="/about" target="_blank">InvictusEd</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -580,7 +591,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">1.4k</span>
+                        class="white-color">1.3k</span>
             
             
             
@@ -601,6 +612,60 @@
             <br>
 
             <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "2";
+                        var startDate = "1";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
             
             <br>
             
@@ -631,10 +696,6 @@
 
 
 
-
-    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
-    </a>
 
 </div>
     </div>
