@@ -416,7 +416,7 @@
                                         文字：<input class="form-control" name="info" type="text" placeholder="hello, world"/>
                                     </div>
                                     <div class="form-group">
-                                        链接：<input class="form-control" name="href" type="text" placeholder="https://github.com/blinkfox/hexo-theme-matery"/>
+                                        链接：<input class="form-control" name="href" type="text" placeholder="[选填] https://invictusqiu.com(请留下你的地址吧)"/>
                                     </div>
                                     <div class="form-group">
                                         速度：<input  class="form-control"  name="speed" type="text" placeholder="5~20" value="16" />
@@ -473,7 +473,7 @@
 							let info = $('input[name=info]').val();
 							(info === '' ) ?  info='hello world' : info=info;
 							let href = $('input[name=href]').val();
-							(href === '' ) ?  href='[选填] https://invictusqiu.com（请留下你的地址吧）' : href=href;
+							(href === '' ) ?  href='https://invictusqiu.com' : href=href;
 							let speed = parseInt($('input[name=speed]').val());
 							if(speed > 20 || speed < 5)
                             speed = Math.floor(Math.random() * 10) + 5;
@@ -871,9 +871,20 @@ $(function () {
     <!--腾讯兔小巢-->
     
     
-
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
     
 
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
     
 
     
