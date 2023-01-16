@@ -631,18 +631,194 @@ void CreatGraph(Graph&amp; G)
 <li>如果A节点不能够直接到达节点则用无穷大表示A到该点的距离。</li>
 <li>任何点到自身的距离都为0  </li>
 </ul>
-<p>在最开始A到其余点的数组如下<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|10|∞|4|∞|∞|  </p>
+<p>在最开始A到其余点的数组如下  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>10</td>
+<td>∞</td>
+<td>4</td>
+<td>∞</td>
+<td>∞</td>
+</tr>
+</tbody></table>
 <p>Dijkstra算法的思想是：从以上最短距离数组中每次选择一个最近的点，将其作为下一个点，然后重新计算从起始点经过该点到其他所有点的距离，并更新最短距离的值，已经选取过的点就是确定了最短路径的点，不再参与下一次计算。  </p>
 <p>我们来看看实际的选取过程</p>
-<h4 id="第一次选取"><a href="#第一次选取" class="headerlink" title="第一次选取"></a>第一次选取</h4><p>构建好的数组是这样的<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|10|∞|4|∞|∞|<br>|第一步选取该最短路径数组中值最小的一个点。因为A点到本身不需要参与运算，所以从剩下的点中选择最短的一个是D。| | | | | |<br>|第二步以<strong>A-D</strong>的距离为最近距离更新A点到所有点的距离。即相当于A点经过D点，计算A到其他点的距离。| | | | | |  </p>
+<h4 id="第一次选取"><a href="#第一次选取" class="headerlink" title="第一次选取"></a>第一次选取</h4><p>构建好的数组是这样的  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>10</td>
+<td>∞</td>
+<td>4</td>
+<td>∞</td>
+<td>∞</td>
+</tr>
+<tr>
+<td>第一步选取该最短路径数组中值最小的一个点。因为A点到本身不需要参与运算，所以从剩下的点中选择最短的一个是D。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第二步以<strong>A-D</strong>的距离为最近距离更新A点到所有点的距离。即相当于A点经过D点，计算A到其他点的距离。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra3.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-C:19<br>A-D: A-D:4<br>A-E: A-D-E:10<br>A-F: A-D-F:∞  </p>
-<p>将现在A到各个点的距离和之前相比较，取最小值，更新BCE的距离，得到新的最短距离数组<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|19|4|10|∞|  </p>
-<h4 id="第二次选取"><a href="#第二次选取" class="headerlink" title="第二次选取"></a>第二次选取</h4><p>AD两点已经选取，不再参与下面的计算。<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|19|4|10|∞| </p>
+<p>将现在A到各个点的距离和之前相比较，取最小值，更新BCE的距离，得到新的最短距离数组  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>19</td>
+<td>4</td>
+<td>10</td>
+<td>∞</td>
+</tr>
+</tbody></table>
+<h4 id="第二次选取"><a href="#第二次选取" class="headerlink" title="第二次选取"></a>第二次选取</h4><p>AD两点已经选取，不再参与下面的计算。  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>19</td>
+<td>4</td>
+<td>10</td>
+<td>∞</td>
+</tr>
+</tbody></table>
 <p>以B为最新点，更新最短距离数组<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra4.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-B-C:14<br>A-D: A-D:4<br>A-E: A-D-B-E:12<br>A-F: A-D-B-F:∞</p>
-<p>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>C点由19更新成14，E点走A-D-E为10，<strong>距离更短所以不更新</strong>，得到如下数组：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|14|4|10|∞| </p>
-<h4 id="第三次选取"><a href="#第三次选取" class="headerlink" title="第三次选取"></a>第三次选取</h4><p>第一步：选取除了A B D节点之外的剩余节点中最短节点，为点E<br>第二步：以E点为最新节点，更新最短路径数组<br>因为在上一步中计算达到E点的距离时没有更新距离，A-D-E 为10 最短，所以更新E点到B C F点的距离时走的路径是A-D-E。注意这里的最短距离有对应的路径，选择最小值就是选择最短距离。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra5.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: A-D:4<br>A-E: A-D-E:10<br>A-F: A-D-E-F:22<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新C点走A-D-E-C为11，比之前的A-D-B-C 14距离更近，更新到F点距离，得到如下数组：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|11|4|10|22| </p>
-<h4 id="第四次选取"><a href="#第四次选取" class="headerlink" title="第四次选取"></a>第四次选取</h4><p>第一步：选取除了A B D E节点之外的剩余节点中最短节点，为点C<br>第二步：以C点为最新节点，更新最短路径数组<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra6.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: 4<br>A-E: A-D-E:10<br>A-F: A-D-E-C-F:16<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新到F点距离，可以得到如下数组：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|11|4|10|16| </p>
-<h4 id="第五次选取"><a href="#第五次选取" class="headerlink" title="第五次选取"></a>第五次选取</h4><p>第一步：选取除了A B C D E节点之外的剩余节点中最短节点，也就是最后一个节点：F<br>第二步：以F点为最新节点，更新最短路径数组。由于F点是最后一个点，所以也不用更新数组，目前的数组就是所求数组将F点加入最短路径范围中，此时所有的点都加入了最短路径范围，也就是说A点到所有点的距离都找到了。最总得出的距离值为：<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra7.png"><br>最终得到的结果为：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|11|4|10|16| </p>
+<p>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>C点由19更新成14，E点走A-D-E为10，<strong>距离更短所以不更新</strong>，得到如下数组：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>14</td>
+<td>4</td>
+<td>10</td>
+<td>∞</td>
+</tr>
+</tbody></table>
+<h4 id="第三次选取"><a href="#第三次选取" class="headerlink" title="第三次选取"></a>第三次选取</h4><p>第一步：选取除了A B D节点之外的剩余节点中最短节点，为点E<br>第二步：以E点为最新节点，更新最短路径数组<br>因为在上一步中计算达到E点的距离时没有更新距离，A-D-E 为10 最短，所以更新E点到B C F点的距离时走的路径是A-D-E。注意这里的最短距离有对应的路径，选择最小值就是选择最短距离。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra5.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: A-D:4<br>A-E: A-D-E:10<br>A-F: A-D-E-F:22<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新C点走A-D-E-C为11，比之前的A-D-B-C 14距离更近，更新到F点距离，得到如下数组：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>22</td>
+</tr>
+</tbody></table>
+<h4 id="第四次选取"><a href="#第四次选取" class="headerlink" title="第四次选取"></a>第四次选取</h4><p>第一步：选取除了A B D E节点之外的剩余节点中最短节点，为点C<br>第二步：以C点为最新节点，更新最短路径数组<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra6.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: 4<br>A-E: A-D-E:10<br>A-F: A-D-E-C-F:16<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新到F点距离，可以得到如下数组：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>16</td>
+</tr>
+</tbody></table>
+<h4 id="第五次选取"><a href="#第五次选取" class="headerlink" title="第五次选取"></a>第五次选取</h4><p>第一步：选取除了A B C D E节点之外的剩余节点中最短节点，也就是最后一个节点：F<br>第二步：以F点为最新节点，更新最短路径数组。由于F点是最后一个点，所以也不用更新数组，目前的数组就是所求数组将F点加入最短路径范围中，此时所有的点都加入了最短路径范围，也就是说A点到所有点的距离都找到了。最总得出的距离值为：<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra7.png"><br>最终得到的结果为：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>16</td>
+</tr>
+</tbody></table>
 <h4 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h4><table>
 <thead>
 <tr>
