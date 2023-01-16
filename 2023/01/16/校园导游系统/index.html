@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity游戏引擎-动画系统-骨骼动画, Makuvi湫">
-    <meta name="description" content="本期文章将介绍游戏中的骨骼动画，以及用Unity对骨骼动画进行实践操作">
+    <meta name="keywords" content="C语言课程设计-校园导游系统, Makuvi湫">
+    <meta name="description" content="C语言数据结构课程设计校园导游系统">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Unity游戏引擎-动画系统-骨骼动画 | Makuvi湫</title>
+    <title>C语言课程设计-校园导游系统 | Makuvi湫</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -322,12 +322,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://invictusqiu.oss-cn-beijing.aliyuncs.com/e438e072-0dee-4ab9-909e-bcf263d2b67f.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://invictusqiu.oss-cn-beijing.aliyuncs.com/Guide1.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Unity游戏引擎-动画系统-骨骼动画</h1>
+                    <h1 class="description center-align post-title">C语言课程设计-校园导游系统</h1>
                 </div>
             </div>
         </div>
@@ -443,8 +443,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Unity/">
-                                <span class="chip bg-color">Unity</span>
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C</span>
                             </a>
                         
                     </div>
@@ -455,8 +455,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Unity/" class="post-category">
-                                Unity
+                            <a href="/categories/C/" class="post-category">
+                                C
                             </a>
                         
                     </div>
@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-28
+                    2023-01-16
                 </div>
                 
 
@@ -477,7 +477,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    4.5k
                 </div>
                 
 
@@ -497,66 +497,526 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="骨骼动画"><a href="#骨骼动画" class="headerlink" title="骨骼动画"></a>骨骼动画</h2><h3 id="骨骼动画的原理"><a href="#骨骼动画的原理" class="headerlink" title="骨骼动画的原理"></a>骨骼动画的原理</h3><p>游戏里最常用的动画是骨骼动画，骨骼动画的出现是因为传统的关键帧动画存在一些问题。  </p>
-<h4 id="传统关键帧动画存在的问题："><a href="#传统关键帧动画存在的问题：" class="headerlink" title="传统关键帧动画存在的问题："></a>传统关键帧动画存在的问题：</h4><blockquote>
-<p>需要保存更多的数据<br>和游戏环境交互较少<br>难于控制</p>
-</blockquote>
-<p>由于场景动画比较简单，如果场景里的物体也比较简单，使用关键帧方式保存不会出现大问题。<strong>但是游戏中出现的角色普遍是由很复杂的网格组成，网格顶点数量巨大，角色形变也比较大，保存的时候就需要大量数据，占据存储空间</strong>。  </p>
-<p>并且游戏跟普通的三维动画、影片不一样，<strong>游戏中的角色需要和游戏中的环境发生交互</strong>，如果角色的网格点是一些离散的三角形顶点，不包含任何语义信息，也就无法和场景发生交互，比如用手抓起武器，都不知道手该用哪一个顶点表示，导致交互很困难。  </p>
-<p>对于更进一步的<strong>运动编辑比较难</strong>，如果我们使用顶点保存关键帧信息，我们有一段走路、跑步运动，而我想得到快走这样一个中间动画，这就变得不现实，我们不能通过两种走路跑步的插值来融合得到。</p>
-<h4 id="骨骼动画解决问题："><a href="#骨骼动画解决问题：" class="headerlink" title="骨骼动画解决问题："></a>骨骼动画解决问题：</h4><p>使用一个中间介质，<strong>中间介质就是骨架</strong>，而角色的真正外观，也就是三维网格，它是依附于骨架的，进行被动地运动，骨架是主动的变化，而外围我们所看到地网格是由于骨架的变化而被动地变化，所以骨骼动画也被称为<strong>隐式动画</strong>。  </p>
-<p>在骨骼动画的播放阶段，由于骨架结构简单，只需要经过简单计算就可以得到骨架的姿态，进而利用网格顶点和骨架上每一骨骼的附属关系信息来计算出每个网格顶点的位置，从而得到最终我们能看见的网格的姿态，生成完整的动画，这种方式就是骨骼动画。 </p>
-<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB01.jpg" alt="骨骼动画" title="骨骼动画">  </p>
-<p><strong>骨骼动画的优势</strong>  </p>
+                <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>  本篇文章的目的是记录下我设计并实现《 C 校园导游系统》的过程，其实我本来想要把这个系统做的很好，但是奈何本学期出现了一些突发事件，导致时间精力都很有限，所以只能暂时搁置了。<br>  选择这个项目的初心是为了锻炼自己，但最终我在它身上只花费了3天时间，作为达到数据结构课程设计的要求它是完全满足的，但是对我而言离我想象中的要求还差得远，就像它只是一个游戏demo，并不是成品。<br>  那为什么我还要拿出来做文章呢？我能力有限无法真正完成它，大概率以后也没时间去做它了，但是记录下万一哪天用上了呢，当然也可以给后辈一个参考价值吧。<br>  不多说了，现在进入正题吧。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ul>
+<li><p>提供直观的学校地图界面供用户进行查看，以点作为景点，以边作为道路；  </p>
+</li>
+<li><p>提供景点相关信息查询功能，能够查询景点位置和输出景点的相关信息；  </p>
+</li>
+<li><p>提供问路查询功能，用户只需输入起点和终点，系统就会为用户提供最短路径；  </p>
+</li>
+<li><p>提供景点类型查询功能，用户可查询相关类型建筑及其信息； </p>
+</li>
+<li><p><strong>总结：《校园导游咨询系统》需要为用户提供一个可视化的校园平面图，并且提供景点查询功能和最短路径查询功能，满足用户的对校园导游系统的基本需求。</strong></p>
+</li>
+</ul>
+<h2 id="设计过程"><a href="#设计过程" class="headerlink" title="设计过程"></a>设计过程</h2><h3 id="地图设计"><a href="#地图设计" class="headerlink" title="地图设计"></a>地图设计</h3><p>要制作导游系统，首先就是明确我们的导游范围，为了明确如何画出地图，我查看了我们学校的地图。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/yxnumap.png" alt="玉溪师范学院地图" title="玉溪师范学院地图"><br>然后根据地图筛选出了15个景点建筑加入到了这次的系统地图中。<br>将15个地点抽象出来构成图结构<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/map1.png"></p>
 <blockquote>
-<p>骨架结构简单，可以高效保存动画的关键帧信息。  </p>
-<p>骨架本身含有语义信息，可以通过骨架区分出身体的不同部位，从而进行更加灵活的控制，比如我们知道骨架上哪一个骨骼是手部骨骼、腿部骨骼、头部骨骼，从而可以通过控制这些骨骼，来跟周围的环境发生交互。  </p>
-<p>得到一些实时计算的动画，这些动画没有事先保存。比如如何通过走路跟跑步融合得到快跑，这种情况只能使用骨骼动画的模式。</p>
+<p>1.东北门 2.大学生活动中心 3.实训大楼A 4.滋味苑 5.龙马公寓 6.后山 7.学生宿舍F,G幢 8.学生宿舍K,L,M,N幢 9.主教学区 10.品味苑 11.艺术综合楼 12.图书馆 13.运动场 14.东南门 15.传习馆</p>
 </blockquote>
-<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB02.png" alt="骨骼动画"><br>骨骼动画在播放时，如上图所示，它是分离的，<strong>骨架用来表示动画信息，周围的人物，我们看得见的网格，是依附于骨架的</strong>。由于人物、脊椎动物，天然是由骨架形成的，所以很适合用骨架来模拟。<strong>构成骨骼动画的完整部分，一部分是骨架，另一部分是跟骨架有映射关系的网格，也称为皮肤，通过控制骨架的运动，来控制相应皮肤的变形，形成角色动画，这就是骨骼动画的播放原理。</strong>  </p>
-<h2 id="Unity骨骼动画基础实践"><a href="#Unity骨骼动画基础实践" class="headerlink" title="Unity骨骼动画基础实践"></a>Unity骨骼动画基础实践</h2><h3 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h3><p>在Asset Store上面下载一个具有骨骼动画的模型包，在搜索栏里输入<strong>Unity-Chan</strong>并下载<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB03.png" alt="Asset Store">  </p>
-<p>然后将下载好的资源包导入到Unity项目工程里面<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB04.png" alt="导入资源包">  </p>
-<h3 id="实施阶段"><a href="#实施阶段" class="headerlink" title="实施阶段"></a>实施阶段</h3><p>一、将模型拖入到场景视图下面<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB05.png">  </p>
-<p>二、通过Animator Controller来对骨骼动画模型进行动画状态的控制<br><strong>在 Project 视图下 Creat 一个 Animator Controller</strong> 起名为 <strong>Girl</strong>。然后把 <strong>Girl</strong> 拖拽到模型的 Animator Controller 属性里面<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB06.png">  </p>
-<p>三、双击 Girl 打开这个角色动画的动画状态机界面，可以在里面添加状态，对动画状态进行转换。在 Project 视图下面找到一个动画片段。这里我找到一个等待的的状态，将它拖拽到 Animator Controller窗口底下，橙色为默认播放的动画状态。点击播放角色开始进行闲置动画。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB07.png"></p>
-<h3 id="脚本控制"><a href="#脚本控制" class="headerlink" title="脚本控制"></a>脚本控制</h3><p><strong>目标是实现：当用户键盘按下空格键，可以由一个动画状态转换为另外一个动画状态。</strong>  </p>
-<p>一、找到另外一个动画状态，拖拽到状态机窗口里面，然后通过建立一个 Transition,把默认动画转换给新的动画片段，添加一个 Trigger 类型（触发器类型）的控制参数，起名为 next，然后点击转换箭头，在转换条件那里把条件设置为 next，当这个参数触发时才发生转换。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB08.png">  </p>
-<p>二、那要怎么发生呢，那就用脚本控制，Creat 一个脚本取名为 AnimaControl，打开脚本编辑</p>
-<pre class="line-numbers language-none"><code class="language-none">public class AnimaControl : MonoBehaviour
-{
-    private Animator anim;      //建立成员变量保存模型的Animator组件
-    // Start is called before the first frame update
-    void Start()
-    {
-        anim = GetComponent&lt;Animator&gt;();    //得到当前游戏物体的Animator组件
-    }
+<p>OK,就这样一份地图模板就制作好了，也可以说图结构的顶点确定好了，那么接下来就是确定边权值。<br>测量边权值的方法，我这里我采用高德地图的测距小工具，几分钟就全部测量好了，将测量好的数据保存起来，之后用得到。  </p>
+<p>接下来就将地图写入到系统中，就纯靠 printf 画图了<br>现在我们的地图模块就设计好了。但是现在只是一个没有任何信息的图，之后还将导入景点编号、景点信息、边权值。</p>
+<h3 id="创建数据结构并初始化"><a href="#创建数据结构并初始化" class="headerlink" title="创建数据结构并初始化"></a>创建数据结构并初始化</h3><p>将我们测量好的数据保存于相应的.txt文件中，这里我将景点编号保存在<strong>Number.txt</strong>文件，景点名称保存在<strong>Name.txt</strong>文件，景点信息保存在<strong>info.txt</strong>文件，各两点间的距离（边权值）保存在<strong>Distance.txt</strong>文件。  </p>
+<p>然后创建我们所需的数据结构</p>
+<pre class="line-numbers language-none"><code class="language-none">#define N 15				//顶点数目值
+#define M 22				//边数目值
+#define VexType string		//顶点数据类型
+#define EdgeType int		//边数据类型
+#define INF 0x3f3f3f3f		//作为最大值
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))     //当用户按下空格键
-        {
-            anim.SetTrigger("next");            //Trigger设置为next
-        }
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>保存后将编辑好的脚本拖拽到模型上面，按下空格转换就发生了，此时的转换是需要等待上一个动画结束后才转换的，如果不想等待，就取消掉 Has Exit Time 选项就可以了。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB09.png"></p>
-<h3 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h3><p>Event的意思是，当这个动画片段播放到某一帧时，可以为它添加一个响应事件，<strong>而这个事件对应着脚本里的某个函数</strong>。所以在脚本里面可以写一个 public 类型的函数，取名为WaitFinish，我们来做一个实验。</p>
-<pre class="line-numbers language-none"><code class="language-none">public void WaitFinish()
-    {
-        Debug.Log("WaitFinish");       //在控制台输出函数被调用时输出的一句话
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>找到动画片段的初始文件，在初始文件属性里面有一个 Event，拖拽时间轴，把动画片段定位为某一帧，这时候可以添加一个响应事件，事件名字为函数名字，然后 Apply 保存。这意味着这个动画片段无论被应用于哪一个Animator Controller当中，当它播放到那一帧时，都会触发这个函数。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB10.png"></p>
-<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>骨骼动画最重要的好处是<strong>可以实现动画数据的重利用</strong>，因为角色的动画只是保存在骨架的结构上，而骨架具有很简单的拓扑结构，如果是同样类型的生物，那么他的骨架很可能是相同的，比如人形，它内部的骨架是一样的，由于最终产生动画的是骨架的变化，所以我们有可能对一个骨架的动画，来驱动不同角色进行相同的运动，这种叫做动画重定向。</p>
-<h4 id="动画的重定向"><a href="#动画的重定向" class="headerlink" title="动画的重定向"></a>动画的重定向</h4><p>如果我想使用别的三维模型的动画，由于骨骼动画的支持，使得过程很便利。<br>我们去Asset Store搜索下载Standard Assets资源，它有一个第三人称控制器，里面已经包含了很多动画片段，有一个很完整的Animator Controller，来控制这些动画片段之间的过渡。  </p>
-<p>我们将第三人称的Animator Controller拖拽给模型，这时候播放就会发现她的idle状态已经变为第三人称控制器的idle状态了。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB11.png"></p>
-<p>然后我们又找到第三人称控制的脚本，拖拽给模型。由于这个脚本里面使用了RequireComponent，所以我们不光添加了这个脚本，还添加了这个脚本所要求的组件在模型身上，我们调整一下碰撞体大小，使得符合模型的大小。我们运行游戏的话，就会发现ASWD鼠标可以对unity-chan进行控制了。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB12.png"></p>
-<h4 id="动画状态之间的融合"><a href="#动画状态之间的融合" class="headerlink" title="动画状态之间的融合"></a>动画状态之间的融合</h4><p>我们打开unity-chan现在所挂接的Animator Controller，发现它有比较复杂的动画状态以及动画状态之间的转换。我们来看其中一个转换，这个转换是角色跳起后落地到站立的过程，她有一个过渡的过程，这个过程显得角色很自然，我们可以把这个过程拉长，这个过程就会变得很缓慢，但过程仍然很自然。当我们将其调回到原来的融合间距，这个过程会变得更加迅速和自然。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB13.png"></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>骨骼动画是用骨骼来保存动画信息，而我们看得见的三维网格，则是依附于骨骼进行被动地运动，这个就是骨骼动画的原理。因为我们保存的骨骼，是跟外貌无关的骨架它的运动，因此，一个骨骼动画，就有可能用来驱动多个不同的角色，这种技术被称为运动的重定向。</p>
+//景点数据结构
+typedef struct Spot
+{
+	int number;
+	char name[20];
+	char SpotInfo[50];
+}Spot;
+
+//图的数据结构
+typedef struct Graph
+{
+	VexType V[N];		//顶点表
+	EdgeType E[N][N];	//边表
+	int vnum, ednum;	//顶点数、边数
+}Graph;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>初始化</p>
+<pre class="line-numbers language-none"><code class="language-none">//初始化图的顶点表，邻接矩阵等
+void InitGraph(Graph&amp; G)
+{
+	//初始化边表
+	for (int i = 0; i &lt; N; i++) {
+		for (int j = 0; j &lt; N; j++) {
+			G.E[i][j] = INF;
+		}
+	}
+	G.ednum = G.vnum = 0;	//初始化顶点数、边数
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>插入顶点和边</p>
+<pre class="line-numbers language-none"><code class="language-none">//插入点函数，改变顶点表
+void InsertNode(Graph&amp; G, VexType v)
+{
+	if (G.vnum &lt; N)
+	{
+		G.V[G.vnum++] = v;
+	}
+}
+
+//插入边函数，改变邻接矩阵
+void InsertEdge(Graph&amp; G, VexType v, VexType w, int weight)
+{
+	int p1, p2;
+	p1 = p2 = -1;
+	for (int i = 0; i &lt; G.vnum; i++)
+	{
+		if (G.V[i] == v)p1 = i;
+		if (G.V[i] == w)p2 = i;
+	}
+	if (p1 != -1 &amp;&amp; p2 != -1)
+	{
+		G.E[p1][p2] = G.E[p2][p1] = weight;	//无向图邻接矩阵对称
+		G.ednum++;
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>创建图，读取文件导入数据</p>
+<pre class="line-numbers language-none"><code class="language-none">//创建图功能实现函数
+void CreatGraph(Graph&amp; G)
+{
+	int vn, an;	//顶点数，边数
+	vn = N;
+	an = M;
+	int count = 0;
+	char str1[20], str2[20];
+	string s1, s2;
+	int temp = 0;
+	FILE* fp1 = fopen("Number.txt", "r");
+	FILE* fp2 = fopen("Distance.txt", "r");
+	if (fp1 == NULL &amp;&amp; fp2 == NULL)
+	{
+		printf("打开文件失败！\n");
+		exit(0);
+	}
+	//从文件中读取景点编号
+	for (int i = 0; i &lt; N; i++)
+	{
+		count = fscanf(fp1, "%s", str1);
+		if (count == -1)exit(0);
+		s1 = str1;
+		InsertNode(G, s1);
+	}
+	//从文件中读取所有边的权值
+	for (int i = 0; i &lt; M; i++)
+	{
+		count = fscanf(fp2, "%s %s %d", str1, str2, &amp;temp);
+		if (count == -1)exit(0);
+		s1 = str1;
+		s2 = str2;
+		InsertEdge(G, s1, s2, temp);
+	}
+	fclose(fp1);
+	fclose(fp2);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>到这里我们的图就创建完成了</strong></p>
+<h3 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h3><p>无论是在教材还是各类算法书籍中都少不了的最短路径算法Dijkstra算法，是由荷兰计算机科学家 Edsger Wybe Dijkstra 在1956年发现的算法，戴克斯特拉算法使用类似广度优先搜索的方法解决赋权图的单源最短路径问题。Dijkstra 算法原始版本仅适用于找到两个顶点之间的最短路径，后来更常见的变体固定了一个顶点作为源结点然后找到该顶点到图中所有其它结点的最短路径，产生一个最短路径树。本算法每次取出未访问结点中距离最小的，用该结点更新其他结点的距离。  </p>
 <blockquote>
-<p>本章一句：<br>这朵世间最美好的玫瑰，星尘为泥，银河滋养。永远不会枯萎，永远在沉静宇宙中盛放。 这是我要给你的，宇宙级别的浪漫。</p>
+<p>核心思想：按路径长度递增次序产生算法，将图数据结构分为顶点集V和边集E，接下来初始化图的顶点表和邻接矩阵，将所有边的权值设置为无穷大，然后插入点改变顶点表，插入边改变邻接矩阵。之后从第一个顶点开始计算最短路径，假如该顶点与其他顶点有边连接，则将其边权值加入到最短路径集，然后依次比较，最后选出最小的边权值，并记录前驱，然后从前驱开始又执行边权值的比较，直到最后到达终点结束，最短路径值即之前记录过的前驱的边权值相加的最终结果。</p>
 </blockquote>
-<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/illust_90738662_20220530_202311.jpg"></p>
+<p>这样讲还是难懂，那我们从头开始了解Dijkstra算法吧</p>
+<p>下面以该图为例讲解Dijkstra算法寻找最短路径的过程<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra2.png"><br>以A为起始点，求A到BCDEF的最短路径  </p>
+<p>要求A到其他5个点的最短距离，我们构造一个数组记录A到BCDEF5个点的路径距离。  </p>
+<p>需要注意的是</p>
+<ul>
+<li>如果A能够直接到达节点，则使用路径长度，即边权值作为其距离。</li>
+<li>如果A节点不能够直接到达节点则用无穷大表示A到该点的距离。</li>
+<li>任何点到自身的距离都为0  </li>
+</ul>
+<p>在最开始A到其余点的数组如下<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|10|∞|4|∞|∞|  </p>
+<p>Dijkstra算法的思想是：从以上最短距离数组中每次选择一个最近的点，将其作为下一个点，然后重新计算从起始点经过该点到其他所有点的距离，并更新最短距离的值，已经选取过的点就是确定了最短路径的点，不再参与下一次计算。  </p>
+<p>我们来看看实际的选取过程</p>
+<h4 id="第一次选取"><a href="#第一次选取" class="headerlink" title="第一次选取"></a>第一次选取</h4><p>构建好的数组是这样的<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|10|∞|4|∞|∞|<br>|第一步选取该最短路径数组中值最小的一个点。因为A点到本身不需要参与运算，所以从剩下的点中选择最短的一个是D。| | | | | |<br>|第二步以<strong>A-D</strong>的距离为最近距离更新A点到所有点的距离。即相当于A点经过D点，计算A到其他点的距离。| | | | | |  </p>
+<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra3.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-C:19<br>A-D: A-D:4<br>A-E: A-D-E:10<br>A-F: A-D-F:∞  </p>
+<p>将现在A到各个点的距离和之前相比较，取最小值，更新BCE的距离，得到新的最短距离数组<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|19|4|10|∞|  </p>
+<h4 id="第二次选取"><a href="#第二次选取" class="headerlink" title="第二次选取"></a>第二次选取</h4><p>AD两点已经选取，不再参与下面的计算。<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|19|4|10|∞| </p>
+<p>以B为最新点，更新最短距离数组<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra4.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-B-C:14<br>A-D: A-D:4<br>A-E: A-D-B-E:12<br>A-F: A-D-B-F:∞</p>
+<p>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>C点由19更新成14，E点走A-D-E为10，<strong>距离更短所以不更新</strong>，得到如下数组：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|14|4|10|∞| </p>
+<h4 id="第三次选取"><a href="#第三次选取" class="headerlink" title="第三次选取"></a>第三次选取</h4><p>第一步：选取除了A B D节点之外的剩余节点中最短节点，为点E<br>第二步：以E点为最新节点，更新最短路径数组<br>因为在上一步中计算达到E点的距离时没有更新距离，A-D-E 为10 最短，所以更新E点到B C F点的距离时走的路径是A-D-E。注意这里的最短距离有对应的路径，选择最小值就是选择最短距离。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra5.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: A-D:4<br>A-E: A-D-E:10<br>A-F: A-D-E-F:22<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新C点走A-D-E-C为11，比之前的A-D-B-C 14距离更近，更新到F点距离，得到如下数组：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|11|4|10|22| </p>
+<h4 id="第四次选取"><a href="#第四次选取" class="headerlink" title="第四次选取"></a>第四次选取</h4><p>第一步：选取除了A B D E节点之外的剩余节点中最短节点，为点C<br>第二步：以C点为最新节点，更新最短路径数组<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra6.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: 4<br>A-E: A-D-E:10<br>A-F: A-D-E-C-F:16<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新到F点距离，可以得到如下数组：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|11|4|10|16| </p>
+<h4 id="第五次选取"><a href="#第五次选取" class="headerlink" title="第五次选取"></a>第五次选取</h4><p>第一步：选取除了A B C D E节点之外的剩余节点中最短节点，也就是最后一个节点：F<br>第二步：以F点为最新节点，更新最短路径数组。由于F点是最后一个点，所以也不用更新数组，目前的数组就是所求数组将F点加入最短路径范围中，此时所有的点都加入了最短路径范围，也就是说A点到所有点的距离都找到了。最总得出的距离值为：<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra7.png"><br>最终得到的结果为：<br>|A|B|C|D|E|F|<br>|-|-|-|-|-|-|<br>|0|6|11|4|10|16| </p>
+<h4 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h4><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>16</td>
+</tr>
+</tbody></table>
+<p>A-A: 0  </p>
+<p>A-B: A-D-B:6<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra8.png"></p>
+<p>A-C: A-D-E-C:11<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra9.png"></p>
+<p>A-D:4<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra10.png"></p>
+<p>A-E: A-D-E:10<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra11.png"></p>
+<p>A-F: A-D-E-C-F:16<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra12.png"></p>
+<h3 id="代码实现Dijkstra算法"><a href="#代码实现Dijkstra算法" class="headerlink" title="代码实现Dijkstra算法"></a>代码实现Dijkstra算法</h3><pre class="line-numbers language-none"><code class="language-none">#define INF 0x3f3f3f3f	//作为最大值
+
+//Dijkstra算法全局变量
+bool S[N];	//顶点集
+int D[N];	//到各个顶点的最短路径
+int Pr[N];	//记录前驱
+
+void Dijkstra(Graph G, int v)
+{
+	//初始化
+	int n = G.vnum;	//n为图的顶点个数
+	for (int i = 0; i &lt; n; i++)
+	{
+		S[i] = false;
+		D[i] = G.E[v][i];
+		if (D[i] &lt; INF)
+		{
+			Pr[i] = v;	//v与i连接，v为前驱
+		}
+		else
+		{
+			Pr[i] = -1;
+		}
+	}
+	S[v] = true;
+	D[v] = 0;
+	//初始化结束，求最短路径，并加入S集
+	for (int i = 1; i &lt; n; i++)
+	{
+		int min = INF;
+		int temp;
+		for (int w = 0; w &lt; n; w++)
+		{
+			if (!S[w] &amp;&amp; D[w] &lt; min)		//某点temp未加入S集，且为当前最短路径
+			{
+				temp = w;
+				min = D[w];
+			}
+		}
+		S[temp] = true;
+		//更新从源点出发至其余点的最短路径 通过temp
+		for (int w = 0; w &lt; n; w++)
+		{
+			if (!S[w] &amp;&amp; D[temp] + G.E[temp][w] &lt; D[w])
+			{
+				D[w] = D[temp] + G.E[temp][w];
+				Pr[w] = temp;
+			}
+		}
+	}
+}
+
+//输出最短路径
+void Path(Graph G, int v)
+{
+	if (Pr[v] == -1)
+	{
+		return;
+	}
+	Path(G, Pr[v]);
+	cout &lt;&lt; G.V[Pr[v]] &lt;&lt; "-&gt;";
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="导游系统问路查询功能"><a href="#导游系统问路查询功能" class="headerlink" title="导游系统问路查询功能"></a>导游系统问路查询功能</h3><p>在了解以及实现了Dijkstra算法之后，我们还要在程序中调用它。  </p>
+<ul>
+<li>用户只需输入起点和终点，系统就会为用户提供最短路径。  </li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">//调用最短路径-Dijkstra算法
+void Shortest_Dijkstra(Graph&amp; G)
+{
+	string vname;
+	string vnamed;
+	int v1, v2;
+	char ch = '1';
+
+	while (true)
+	{
+		v1 = -1;
+		v2 = -1;
+		cout &lt;&lt; "请输入起点编号：";
+		cin &gt;&gt; vname;
+		for (int i = 0; i &lt; G.vnum; i++) {
+			if (G.V[i] == vname)
+			{
+				v1 = i;
+			}
+		}
+		if (v1 == -1)
+		{
+			cout &lt;&lt; "没有找到输入点！" &lt;&lt; endl;
+			system("pause");
+			system("cls");
+			drawMap();
+			continue;
+		}
+		cout &lt;&lt; "请输入终点编号：";
+		cin &gt;&gt; vnamed;
+		for (int i = 0; i &lt; G.vnum; i++) {
+			if (G.V[i] == vnamed)
+			{
+				v2 = i;
+			}
+		}
+		if (v2 == -1)
+		{
+			cout &lt;&lt; "没有找到终点！" &lt;&lt; endl;
+			system("pause");
+			system("cls");
+			drawMap();
+			continue;
+		}
+		Dijkstra(G, v1);
+		cout &lt;&lt; "\n目标点" &lt;&lt; "\t" &lt;&lt; "最短路径值" &lt;&lt; "\t" &lt;&lt; "最短路径" &lt;&lt; "\t" &lt;&lt; endl;
+		for (int i = 0; i &lt; G.vnum; i++)
+		{
+			if (i != v1 &amp;&amp; i == v2)
+			{
+				cout &lt;&lt; " " &lt;&lt; G.V[i] &lt;&lt; "\t" &lt;&lt; D[i] &lt;&lt; "米" &lt;&lt; "\t" &lt;&lt; "\t";
+				Path(G, i);
+				cout &lt;&lt; G.V[i] &lt;&lt; endl;
+			}
+		}
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>效果展示:</p>
+<pre class="line-numbers language-none"><code class="language-none">请输入起点编号：1
+请输入终点编号：5
+
+目标点  最短路径值      最短路径
+ 5      400米           1-&gt;2-&gt;4-&gt;5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="导游系统信息查询功能"><a href="#导游系统信息查询功能" class="headerlink" title="导游系统信息查询功能"></a>导游系统信息查询功能</h3><p>信息查询功能很简单，把预先准备的景点信息文件读取到程序的景点数据结构中，然后输出它就行了。  </p>
+<p>部分代码展示</p>
+<pre class="line-numbers language-none"><code class="language-none">void NameFile(Spot spt[])
+{
+	int count = 0;
+	int i;
+	FILE* fp = fopen("Name.txt", "r");
+
+	if (fp == NULL) {
+		printf("打开文件失败！\n");
+		exit(0);
+	}
+	for (i = 0; i &lt; N; i++) {
+		spt[i].number = i + 1;
+		count = fscanf(fp, "%s", spt[i].name);
+		if (count == -1) exit(0);
+		//printf("%s\n", spt[i].name);		测试代码
+	}
+	fclose(fp);
+}
+
+void InfoFile(Spot spt[])
+{
+	int count = 0;
+	int i;
+	FILE* fp = fopen("Info.txt", "r");
+
+	if (fp == NULL) {
+		printf("打开文件失败！\n");
+		exit(0);
+	}
+	for (i = 0; i &lt; N; i++) {
+		count = fscanf(fp, "%s", spt[i].SpotInfo);
+		if (count == -1)exit(0);
+		//printf("%s\n", spt[i].SpotInfo);		测试代码
+	}
+	fclose(fp);
+}
+
+void printInfo(Spot spt[], int i)
+{
+	printf("\n%d.%s\n简介：%s\n", spt[i].number, spt[i].name, spt[i].SpotInfo);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="导游系统景点类型查询功能"><a href="#导游系统景点类型查询功能" class="headerlink" title="导游系统景点类型查询功能"></a>导游系统景点类型查询功能</h3><p>功能分析：</p>
+<ul>
+<li>1个景点类型包含若干个景点</li>
+<li>用户可以查询该景点类型包含哪几个景点</li>
+<li>用户可以详细了解某一个景点的信息</li>
+</ul>
+<p>首先我们初始化景点类型数据结构，然后将各个景点进行类型分类，然后加入景点类型查询模块，后面嵌套一下景点信息查询模块。</p>
+<p>部分代码展示：</p>
+<pre class="line-numbers language-none"><code class="language-none">#define TN 5				//类型数目值
+
+//景点类型数据结构
+typedef struct SpotType
+{
+	string typeName;
+	Spot S[TN];
+	int number;
+}SpotType;
+
+//初始化景点类型数据结构
+void BuildingType(Spot spt[], SpotType stype[])
+{
+	stype[0].typeName = "教学楼";
+	stype[1].typeName = "学生宿舍";
+	stype[2].typeName = "食堂";
+	stype[3].typeName = "课外活动点";
+	stype[0].S[0] = spt[2];
+	stype[0].S[1] = spt[8];
+	stype[0].S[2] = spt[10];
+	stype[0].number = 3;
+	stype[1].S[0] = spt[4];
+	stype[1].S[1] = spt[6];
+	stype[1].S[2] = spt[7];
+	stype[1].number = 3;
+	stype[2].S[0] = spt[3];
+	stype[2].S[1] = spt[9];
+	stype[2].number = 2;
+	stype[3].S[0] = spt[1];
+	stype[3].S[1] = spt[5];
+	stype[3].S[2] = spt[12];
+	stype[3].S[3] = spt[14];
+	stype[3].number = 4;
+}
+
+//查询景点类型
+void ShowType(Spot spt[], SpotType stype[])
+{
+	int select = 0;
+
+	while (true)
+	{
+		cout &lt;&lt; "                                                    |==============================|" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          1." &lt;&lt; stype[0].typeName &lt;&lt; "            |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          2." &lt;&lt; stype[1].typeName &lt;&lt; "          |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          3." &lt;&lt; stype[2].typeName &lt;&lt; "              |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          4." &lt;&lt; stype[3].typeName &lt;&lt; "        |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |==============================|" &lt;&lt; endl;
+		cout &lt;&lt; "请选择你需要您要了解的类型：";
+		cin &gt;&gt; select;
+		getchar();
+		switch (select)
+		{
+		case 1:
+			Print_Type(stype[select - 1]);
+			break;
+		case 2:
+			Print_Type(stype[select - 1]);
+			break;
+		case 3:
+			Print_Type(stype[select - 1]);
+			break;
+		case 4:
+			Print_Type(stype[select - 1]);
+			break;
+		default:
+			cout &lt;&lt; "请输入有效选项！\n回车键继续..." &lt;&lt; endl;
+			getchar();
+			system("cls");
+			drawMap();
+			continue;
+		}
+		cout &lt;&lt; "\n您需要了解以上建筑信息吗？（输入1了解，输入0取消）：";
+		int select2;
+		int select3;
+		while (true)
+		{
+			cin &gt;&gt; select2;
+			if (select2 == 1)
+			{
+				while (true)
+				{
+					cout &lt;&lt; "\n请输入你想要了解建筑的编号（输入0取消）：";
+					cin &gt;&gt; select3;
+					if (select == 1)
+					{
+						if (select3 == 3 || select3 == 9 || select3 == 11)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+					else if (select == 2)
+					{
+						if (select3 == 5 || select3 == 7 || select3 == 8)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+					if (select == 3)
+					{
+						if (select3 == 4 || select3 == 10)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+					if (select == 4)
+					{
+						if (select3 == 2 || select3 == 6 || select3 == 13 || select3 == 15)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+				}
+			}
+			else if (select2 == 0)
+			{
+				break;
+			}
+			else
+			{
+				cout &lt;&lt; "请输入正确选项！" &lt;&lt; endl;
+				break;
+			}
+			if (select3 == 0) break;
+		}
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本次的校园导游系统是我的数据结构课程设计，希望这篇文章能够帮我记下Dijkstra算法的实际运用，今后遇到相应的算法也能够有解决思路。  </p>
+<p>本次的导游系统介绍就到这了，有需要看源代码的朋友可以到我的 GitHub 仓库中查看。  </p>
+<h2 id="链接："><a href="#链接：" class="headerlink" title="链接："></a>链接：</h2><p><a target="_blank" rel="noopener" href="https://github.com/InvictusEd/Campus-tour-guide-system.git">校园导游系统</a></p>
+<blockquote>
+<p>本章一句：<br>当你因为错过太阳而哭泣的时候，你也要错过群星了。——泰戈尔《飞鸟集》</p>
+</blockquote>
 
                 
             </div>
@@ -583,7 +1043,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://invictusqiu.com/2022/07/28/Unity3d%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F/">http://invictusqiu.com/2022/07/28/Unity3d%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F/</a>
+                    <a href="http://invictusqiu.com/2023/01/16/%E6%A0%A1%E5%9B%AD%E5%AF%BC%E6%B8%B8%E7%B3%BB%E7%BB%9F/">http://invictusqiu.com/2023/01/16/%E6%A0%A1%E5%9B%AD%E5%AF%BC%E6%B8%B8%E7%B3%BB%E7%BB%9F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -621,8 +1081,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Unity/">
-                                    <span class="chip bg-color">Unity</span>
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C</span>
                                 </a>
                             
                         </div>
@@ -1067,7 +1527,56 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2022/07/28/Unity3d%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E2%80%94%E2%80%94%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F/">
+                <a href="/2023/01/16/%E6%A0%A1%E5%9B%AD%E5%AF%BC%E6%B8%B8%E7%B3%BB%E7%BB%9F/">
+                    <div class="card-image">
+                        
+                        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Guide1.png" class="responsive-img" alt="C语言课程设计-校园导游系统">
+                        
+                        <span class="card-title">C语言课程设计-校园导游系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C语言数据结构课程设计校园导游系统
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category">
+                                    C
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/07/28/Unity-%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F-%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB/">
                     <div class="card-image">
                         
                         <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/e438e072-0dee-4ab9-909e-bcf263d2b67f.png" class="responsive-img" alt="Unity游戏引擎-动画系统-骨骼动画">
@@ -1097,60 +1606,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/Unity/">
                         <span class="chip bg-color">Unity</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/02/27/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E4%B8%80/">
-                    <div class="card-image">
-                        
-                        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/illust_89703601_20220309_211943.png" class="responsive-img" alt="Java学习记录 (一)">
-                        
-                        <span class="card-title">Java学习记录 (一)</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            学习Java这一优秀的程序设计语言令我感到宁静，没有学习C++时那种繁杂的情绪，此系列文章将记录我学习Java的过程
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-27
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -1324,7 +1784,7 @@
                    type="playlist"
                    id="6879836742"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
@@ -1346,7 +1806,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2022</span>
+                <span id="year">2022-2023</span>
             
             <a href="/about" target="_blank">InvictusEd</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1354,7 +1814,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">5.5k</span>
+                        class="white-color">10k</span>
             
             
             
