@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity游戏引擎-动画系统-骨骼动画, Makuvi湫">
-    <meta name="description" content="本期文章将介绍游戏中的骨骼动画，以及用Unity对骨骼动画进行实践操作">
+    <meta name="keywords" content="中国大学生计算机设计大赛作品——电荷：正正子与负负美, Makuvi湫">
+    <meta name="description" content="2021年第14届中国大学生计算机设计大赛获奖作品《电荷：正正子与负负美》设计思路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Unity游戏引擎-动画系统-骨骼动画 | Makuvi湫</title>
+    <title>中国大学生计算机设计大赛作品——电荷：正正子与负负美 | Makuvi湫</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -322,12 +322,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://invictusqiu.oss-cn-beijing.aliyuncs.com/e438e072-0dee-4ab9-909e-bcf263d2b67f.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://invictusqiu.oss-cn-beijing.aliyuncs.com/ZhengFuCover.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Unity游戏引擎-动画系统-骨骼动画</h1>
+                    <h1 class="description center-align post-title">中国大学生计算机设计大赛作品——电荷：正正子与负负美</h1>
                 </div>
             </div>
         </div>
@@ -441,25 +441,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Unity/">
-                                <span class="chip bg-color">Unity</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Unity/" class="post-category">
-                                Unity
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -468,7 +455,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-28
+                    2023-03-18
                 </div>
                 
 
@@ -477,7 +464,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    3.6k
                 </div>
                 
 
@@ -497,66 +484,62 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="骨骼动画"><a href="#骨骼动画" class="headerlink" title="骨骼动画"></a>骨骼动画</h2><h3 id="骨骼动画的原理"><a href="#骨骼动画的原理" class="headerlink" title="骨骼动画的原理"></a>骨骼动画的原理</h3><p>游戏里最常用的动画是骨骼动画，骨骼动画的出现是因为传统的关键帧动画存在一些问题。  </p>
-<h4 id="传统关键帧动画存在的问题："><a href="#传统关键帧动画存在的问题：" class="headerlink" title="传统关键帧动画存在的问题："></a>传统关键帧动画存在的问题：</h4><blockquote>
-<p>需要保存更多的数据<br>和游戏环境交互较少<br>难于控制</p>
-</blockquote>
-<p>由于场景动画比较简单，如果场景里的物体也比较简单，使用关键帧方式保存不会出现大问题。<strong>但是游戏中出现的角色普遍是由很复杂的网格组成，网格顶点数量巨大，角色形变也比较大，保存的时候就需要大量数据，占据存储空间</strong>。  </p>
-<p>并且游戏跟普通的三维动画、影片不一样，<strong>游戏中的角色需要和游戏中的环境发生交互</strong>，如果角色的网格点是一些离散的三角形顶点，不包含任何语义信息，也就无法和场景发生交互，比如用手抓起武器，都不知道手该用哪一个顶点表示，导致交互很困难。  </p>
-<p>对于更进一步的<strong>运动编辑比较难</strong>，如果我们使用顶点保存关键帧信息，我们有一段走路、跑步运动，而我想得到快走这样一个中间动画，这就变得不现实，我们不能通过两种走路跑步的插值来融合得到。</p>
-<h4 id="骨骼动画解决问题："><a href="#骨骼动画解决问题：" class="headerlink" title="骨骼动画解决问题："></a>骨骼动画解决问题：</h4><p>使用一个中间介质，<strong>中间介质就是骨架</strong>，而角色的真正外观，也就是三维网格，它是依附于骨架的，进行被动地运动，骨架是主动的变化，而外围我们所看到地网格是由于骨架的变化而被动地变化，所以骨骼动画也被称为<strong>隐式动画</strong>。  </p>
-<p>在骨骼动画的播放阶段，由于骨架结构简单，只需要经过简单计算就可以得到骨架的姿态，进而利用网格顶点和骨架上每一骨骼的附属关系信息来计算出每个网格顶点的位置，从而得到最终我们能看见的网格的姿态，生成完整的动画，这种方式就是骨骼动画。 </p>
-<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB01.jpg" alt="骨骼动画" title="骨骼动画">  </p>
-<p><strong>骨骼动画的优势</strong>  </p>
+                <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>  本篇文章着重于记录我参加中国大学生计算机设计大赛的经历和作品创作过程。<br>  《电荷：正正子与负负美》是我在大一时设计的微课作品，在我心中它值得写上一笔，文章内容包括创作它时的设计思路和实现方法，以及我的参赛历程。<br>  《电荷：正正子与负负美》不算是一款成功的参赛作品，制作人也就是我也没有专业的微课制作水准，想要从此处取经的朋友还请海涵。<br>  于我而言，本篇文章更重要的作用是用于勉励自己，“历历浮生，无非败而后成。”</p>
 <blockquote>
-<p>骨架结构简单，可以高效保存动画的关键帧信息。  </p>
-<p>骨架本身含有语义信息，可以通过骨架区分出身体的不同部位，从而进行更加灵活的控制，比如我们知道骨架上哪一个骨骼是手部骨骼、腿部骨骼、头部骨骼，从而可以通过控制这些骨骼，来跟周围的环境发生交互。  </p>
-<p>得到一些实时计算的动画，这些动画没有事先保存。比如如何通过走路跟跑步融合得到快跑，这种情况只能使用骨骼动画的模式。</p>
+<p>有关于中国大学生计算机设计大赛的介绍就不在此处赘述了，想要参赛的朋友还请自行去官网了解参赛时间和参赛项目及要求，本篇文章的作品类别属于微课类。<br><a target="_blank" rel="noopener" href="http://jsjds.blcu.edu.cn/">中国大学生计算机设计大赛官网</a></p>
 </blockquote>
-<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB02.png" alt="骨骼动画"><br>骨骼动画在播放时，如上图所示，它是分离的，<strong>骨架用来表示动画信息，周围的人物，我们看得见的网格，是依附于骨架的</strong>。由于人物、脊椎动物，天然是由骨架形成的，所以很适合用骨架来模拟。<strong>构成骨骼动画的完整部分，一部分是骨架，另一部分是跟骨架有映射关系的网格，也称为皮肤，通过控制骨架的运动，来控制相应皮肤的变形，形成角色动画，这就是骨骼动画的播放原理。</strong>  </p>
-<h2 id="Unity骨骼动画基础实践"><a href="#Unity骨骼动画基础实践" class="headerlink" title="Unity骨骼动画基础实践"></a>Unity骨骼动画基础实践</h2><h3 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h3><p>在Asset Store上面下载一个具有骨骼动画的模型包，在搜索栏里输入<strong>Unity-Chan</strong>并下载<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB03.png" alt="Asset Store">  </p>
-<p>然后将下载好的资源包导入到Unity项目工程里面<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB04.png" alt="导入资源包">  </p>
-<h3 id="实施阶段"><a href="#实施阶段" class="headerlink" title="实施阶段"></a>实施阶段</h3><p>一、将模型拖入到场景视图下面<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB05.png" alt="拖入模型">  </p>
-<p>二、通过Animator Controller来对骨骼动画模型进行动画状态的控制<br><strong>在 Project 视图下 Creat 一个 Animator Controller</strong> 起名为 <strong>Girl</strong>。然后把 <strong>Girl</strong> 拖拽到模型的 Animator Controller 属性里面<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB06.png" alt="创建Animator Controller">  </p>
-<p>三、双击 Girl 打开这个角色动画的动画状态机界面，可以在里面添加状态，对动画状态进行转换。在 Project 视图下面找到一个动画片段。这里我找到一个等待的的状态，将它拖拽到 Animator Controller窗口底下，橙色为默认播放的动画状态。点击播放角色开始进行闲置动画。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB07.png" alt="动画状态机"></p>
-<h3 id="脚本控制"><a href="#脚本控制" class="headerlink" title="脚本控制"></a>脚本控制</h3><p><strong>目标是实现：当用户键盘按下空格键，可以由一个动画状态转换为另外一个动画状态。</strong>  </p>
-<p>一、找到另外一个动画状态，拖拽到状态机窗口里面，然后通过建立一个 Transition,把默认动画转换给新的动画片段，添加一个 Trigger 类型（触发器类型）的控制参数，起名为 next，然后点击转换箭头，在转换条件那里把条件设置为 next，当这个参数触发时才发生转换。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB08.png" alt="添加控制参数和转换条件">  </p>
-<p>二、那要怎么发生呢，那就用脚本控制，Creat 一个脚本取名为 AnimaControl，打开脚本编辑</p>
-<pre class="line-numbers language-none"><code class="language-none">public class AnimaControl : MonoBehaviour
-{
-    private Animator anim;      //建立成员变量保存模型的Animator组件
-    // Start is called before the first frame update
-    void Start()
-    {
-        anim = GetComponent&lt;Animator&gt;();    //得到当前游戏物体的Animator组件
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))     //当用户按下空格键
-        {
-            anim.SetTrigger("next");            //Trigger设置为next
-        }
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>保存后将编辑好的脚本拖拽到模型上面，按下空格转换就发生了，此时的转换是需要等待上一个动画结束后才转换的，如果不想等待，就取消掉 Has Exit Time 选项就可以了。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB09.png" alt="动画转换"></p>
-<h3 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h3><p>Event的意思是，当这个动画片段播放到某一帧时，可以为它添加一个响应事件，<strong>而这个事件对应着脚本里的某个函数</strong>。所以在脚本里面可以写一个 public 类型的函数，取名为WaitFinish，我们来做一个实验。</p>
-<pre class="line-numbers language-none"><code class="language-none">public void WaitFinish()
-    {
-        Debug.Log("WaitFinish");       //在控制台输出函数被调用时输出的一句话
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>找到动画片段的初始文件，在初始文件属性里面有一个 Event，拖拽时间轴，把动画片段定位为某一帧，这时候可以添加一个响应事件，事件名字为函数名字，然后 Apply 保存。这意味着这个动画片段无论被应用于哪一个Animator Controller当中，当它播放到那一帧时，都会触发这个函数。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB10.png" alt="响应事件"></p>
-<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>骨骼动画最重要的好处是<strong>可以实现动画数据的重利用</strong>，因为角色的动画只是保存在骨架的结构上，而骨架具有很简单的拓扑结构，如果是同样类型的生物，那么他的骨架很可能是相同的，比如人形，它内部的骨架是一样的，由于最终产生动画的是骨架的变化，所以我们有可能对一个骨架的动画，来驱动不同角色进行相同的运动，这种叫做动画重定向。</p>
-<h4 id="动画的重定向"><a href="#动画的重定向" class="headerlink" title="动画的重定向"></a>动画的重定向</h4><p>如果我想使用别的三维模型的动画，由于骨骼动画的支持，使得过程很便利。<br>我们去Asset Store搜索下载Standard Assets资源，它有一个第三人称控制器，里面已经包含了很多动画片段，有一个很完整的Animator Controller，来控制这些动画片段之间的过渡。  </p>
-<p>我们将第三人称的Animator Controller拖拽给模型，这时候播放就会发现她的idle状态已经变为第三人称控制器的idle状态了。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB11.png" alt="第三人称Animator Controller"></p>
-<p>然后我们又找到第三人称控制的脚本，拖拽给模型。由于这个脚本里面使用了RequireComponent，所以我们不光添加了这个脚本，还添加了这个脚本所要求的组件在模型身上，我们调整一下碰撞体大小，使得符合模型的大小。我们运行游戏的话，就会发现ASWD鼠标可以对unity-chan进行控制了。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB12.png" alt="第三人称控制脚本"></p>
-<h4 id="动画状态之间的融合"><a href="#动画状态之间的融合" class="headerlink" title="动画状态之间的融合"></a>动画状态之间的融合</h4><p>我们打开unity-chan现在所挂接的Animator Controller，发现它有比较复杂的动画状态以及动画状态之间的转换。我们来看其中一个转换，这个转换是角色跳起后落地到站立的过程，她有一个过渡的过程，这个过程显得角色很自然，我们可以把这个过程拉长，这个过程就会变得很缓慢，但过程仍然很自然。当我们将其调回到原来的融合间距，这个过程会变得更加迅速和自然。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB13.png" alt="动画状态之间的融合"></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>骨骼动画是用骨骼来保存动画信息，而我们看得见的三维网格，则是依附于骨骼进行被动地运动，这个就是骨骼动画的原理。因为我们保存的骨骼，是跟外貌无关的骨架它的运动，因此，一个骨骼动画，就有可能用来驱动多个不同的角色，这种技术被称为运动的重定向。</p>
+<h2 id="作品设计思路"><a href="#作品设计思路" class="headerlink" title="作品设计思路"></a>作品设计思路</h2><h3 id="确定微课主题"><a href="#确定微课主题" class="headerlink" title="确定微课主题"></a>确定微课主题</h3><p>微课是什么？简而言之就是在短时间内能够将知识点讲授清楚的视频。</p>
+<p>当初想要参赛的我，首先思考的就是课题。<strong>什么样的课题是我已经学过且掌握的，该知识点是否适合制作成微课，这个课题是否新颖，是否有利于故事创作。</strong></p>
+<p>以微课的定义出发，我认为一部好的微课，它要做到<strong>能够将晦涩难懂的知识清清楚楚而且生动形象地讲授出来。</strong>  </p>
+<p>因为我高中比较擅长物理，当我快速地回顾了高中物理3-1课本的内容时，我脑海中闪现出了正负电荷的具体形象，而且正负电荷之间的关系很奇妙，我应该可以试试……  </p>
+<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/charges.png" alt="正负电荷" title="正负电荷">  </p>
+<p>也因此我确定下了微课的主题：<strong>正负电荷</strong></p>
+<h3 id="编写一则故事"><a href="#编写一则故事" class="headerlink" title="编写一则故事"></a>编写一则故事</h3><p>其实微课作品不一定需要生动的故事内容来支撑，但假如你能做到为该知识点编写故事，就能够使枯燥的知识变得有趣起来，因为我不擅长制作动画，所以有一则新颖的故事是非常有必要的。  </p>
+<ul>
+<li>人物：灵感来源于动画《pop子和pipi美的日常》，感觉挺顺口的，所以我将它们命名为“正正子”和“负负美”</li>
+<li>关系：挚友</li>
+<li>时间：过去</li>
+<li>地点：地球</li>
+<li>内容：以上帝视角的方式讲述正正子和负负美的历史和关系</li>
+</ul>
+<p>故事可以追溯到电荷的历史起源，将正负电荷拟人化，并赋予感情，与我们人类的情感产生共鸣，将库仑力比喻为人类之间的思念之情。  </p>
+<p>具体的故事内容就不在此展开描述了，后面我会给出设计与开发文档的链接。</p>
+<h2 id="作品实现方法"><a href="#作品实现方法" class="headerlink" title="作品实现方法"></a>作品实现方法</h2><h3 id="角色设计"><a href="#角色设计" class="headerlink" title="角色设计"></a>角色设计</h3><p>参考了《pop子和pipi美的日常生活》，哈哈，画风简单粗暴，对于人物的创作我是零基础的，在此也没什么可讲的。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/ZhengFu.png" alt="正正子和负负美" title="正正子和负负美"></p>
+<h3 id="素材收集"><a href="#素材收集" class="headerlink" title="素材收集"></a>素材收集</h3><p>现在网上如此之多的素材资源，只要肯找都是有的。因为我的作品是属于简约风格，所以没有下很多功夫去网上收集素材，收集的仅仅是一些名人的图片和实物图。  </p>
+<p>另外的一些图片我是从 <a target="_blank" rel="noopener" href="https://www.islide.cc/">iSlide</a> 上拿来的，当时我是开通了一个会员，节省了我很多收集素材的时间。  </p>
+<h3 id="撰写说课稿"><a href="#撰写说课稿" class="headerlink" title="撰写说课稿"></a>撰写说课稿</h3><p>要演出故事，首先得有剧本，说课稿就是剧本，写好了剧本，才能有条不紊的进行整个故事的创作。将想好的故事写进说课稿，然后照着读上几遍，控制好节奏和时间，因为这基本奠定了之后微课的时长。  </p>
+<p><strong>我推荐比赛的微课时长在6-8分钟之间，比赛有答辩环节，10分钟以内你得把作品进行展示和解说，所以控制好作品的时长很重要，必须腾出足够的时间解说。</strong></p>
+<h3 id="动画制作"><a href="#动画制作" class="headerlink" title="动画制作"></a>动画制作</h3><p>这是最为核心的环节，微课动画制作方法多种多样，我知道的有 Flash，After Effects，还有一些本身就是为微课而生的软件比如Focusky。  </p>
+<p>然而在制作过程中以上软件我都没用，我用的只是 PowerPonit，也就是 PPT,在固有观念里 PPT 就是做课件用的，但其实它是实实在在的动画制作软件，而缺点是制作起来较为繁杂。  </p>
+<p>学习其他软件，我要考虑时间成本，PPT 动画我需要学的仅仅是在原来的基础上进行进阶，因此我在B站上看了许多 PPT 动画视频，从中进行学习。  </p>
+<p><strong>PPT制作动画需要的不是高技术含量，是耐心，一张 PPT 多则可高达上百张动画，需要一步一步来组合。将文字在脑海中转换成图像，再用双手创作出来，动画制作就这么个过程。</strong></p>
+<h3 id="视频制作"><a href="#视频制作" class="headerlink" title="视频制作"></a>视频制作</h3><p>那我们仅仅做好动画是不行的，我们还需要拍摄成视频，进行配乐和配音，以及添加字幕，等一系列后期处理。  </p>
+<p>PPT 做的动画做成视频很简单，你可以直接以视频的方式导出。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/pptMovie1.png" alt="PPT导出视频" title="PPT导出视频">  </p>
+<p>或者用录频软件录制一遍 PPT 的动画播放。<br>录频软件：N卡自带的录屏功能，OBS Studio，Bandicam(付费)等。  </p>
+<p>录好视频后，进行配乐和配音，我当时用的是 Premiere，pr的话可能需要花些时间去学习如何使用，现在的话我知道的剪映也是不错的，易上手。  </p>
+<p>配音的话简单粗暴，手机的录音功能加耳机就行，我当时是一句一句配的，这样不满意的话方便重新配。  </p>
+<p>配完的音频文件导入pr中，和视频进行结合就大功告成了，《电荷：正正子与负负美》的配音全程都是由我一人配的，当然如果要进一步提升竞争力我还是建议找专业的配音来吧。  </p>
+<p>挑选配乐的话，怎样合适怎样来，这范围就太大了。我当时挑选的是iPhone 5 广告Photos Every Day中的BGM—Rob Simonsen Blue</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>制作微课不需要高技术含量，制作一部微课，并且要用来参加竞赛的话，重要的是一定要记得<strong>创新</strong>，如果在此基础上你能设计出漂亮的动画和其他视觉、听觉上的体验那肯定是大大的加分项。  </p>
+<p><strong>虽然没在文章中说有关参赛文档的事，但如果是想要参赛的朋友一定要认认真真填写所有参赛文档，后期答辩时评委会仔细看和提问的，尤其是国赛的评委。</strong></p>
+<p><strong>如果是打算提取干货的朋友看到这里就可以离开了，后面的内容对你的帮助不大。</strong></p>
+<h2 id="作品链接"><a href="#作品链接" class="headerlink" title="作品链接"></a>作品链接</h2><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1QGm5GTxQxeMLMfO5QWZ8ng?pwd=star">https://pan.baidu.com/s/1QGm5GTxQxeMLMfO5QWZ8ng?pwd=star</a><br>提取码：star </p>
+</blockquote>
+<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/yimeifasha.jpg"><br>我们下期文章再见。</p>
+<h2 id="参赛历程"><a href="#参赛历程" class="headerlink" title="参赛历程"></a>参赛历程</h2><p><strong>打算提取干货的朋友看到这里就可以离开了，后面的内容对你帮助不大</strong>。  </p>
+<p>既然是我的个人blog，我当然有必要记录下自己当时参赛的历程。  </p>
+<h3 id="报名"><a href="#报名" class="headerlink" title="报名"></a>报名</h3><p>  当时刚进入大学，对一切都是那么好奇，感觉自己想做的事有很多，感觉自己目标很清晰，很有干劲呢。头一次听到计算机设计大赛是在一次学科讲座上听老师和学姐分享的，当时很有精神啊，还和学姐积极互动，那时候就想我应该也可以做一个参赛作品出来吧，听说可以出省去其他学校比赛呢，这对于一个入学就被封锁的学生来说太有吸引力了。<br>  到下学期时，报名开始，那肯定得报嘛，约上我两个舍友然后就报上了。难的是后面怎么做呢？我看了一些优秀的获奖作品，想从中取经，当时看了的感觉就是：哇这做的太好了，没点专业知识恐怕做不出来。那时候我们所有人都打退堂鼓，后来我提出做高中物理的电荷，这个题材比较好做，后面我们讨论了下，确定下来。<br>  后面就由我创作了整个故事情节，但是难点又来了，怎么做动画，我们都尝试做了，但是效果不尽人意。我就硬照着B站上那些好看的PPT动画去做，花了很大功夫，后来成功了，当我做出开头时，我感觉我还是可以的。</p>
+<h3 id="制作"><a href="#制作" class="headerlink" title="制作"></a>制作</h3><p>  我做了两天，然后就放五一假期，当时我和舍友都回家了，那作品可能真就放弃了。回家后的两天抽空做了做，把开头做好，完成了30％，后面两天，花了大部分精力去做，尤其是第四天直接做到了凌晨5点。我当时就感觉灵感很充足，脑子中一幅幅画面涌现出来，效率特别高，毫无困意，那一天晚上直接就把动画全部做完了。<br>  最后一天我在家弄好视频，回到学校弄好配音，然后就贴着时间点上交了。没想过拿奖，当时就没想要拿奖，可能一切都是徒劳，但是自己想做，想把这个故事写出来，画面呈现出来。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/ZhengFuCover.png"></p>
+<h3 id="校级赛"><a href="#校级赛" class="headerlink" title="校级赛"></a>校级赛</h3><p>  当时校级赛也需要答辩，第一次答辩我还是蛮紧张的，答辩当天，发现周围的参赛选手都做了答辩PPT，而我没做，当时心情就是崩了，答辩时我就放了一下作品，然后用作品本来的PPT做了介绍，当时觉得应该是没戏了，后面也没多想了，至少能锻炼一下自己的答辩能力……</p>
+<h3 id="获奖"><a href="#获奖" class="headerlink" title="获奖"></a>获奖</h3><p>  校级赛公布结果的那一天，我在上PS课，当时点开一看是一等奖！差点在课上笑出声，瞬间感觉自己所有的付出都值了，后来作品被交付给省上初评顺利通过了，拿到了省赛现场资格，只要拿到了省赛现场资格就意味着进入了国赛。</p>
+<h3 id="省赛"><a href="#省赛" class="headerlink" title="省赛"></a>省赛</h3><p>  省赛定在云南工商学院，没错，是线下赛，为期三天。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/gongshangxueyuan.jpg" alt="云南工商学院" title="云南工商学院"><br>  第一天从学校出发，乘坐高铁到达了昆明市杨林大学城，入住了官方指定的酒店，然后去领取选手证和官方T恤，顺便抽了签。答辩是分组的，和我同行的两组学长学姐我们分到了不同组，但我们手气出奇一致，在组内把第1都包了，所以当天会很快答完辩，然后就可以在杨林耍一天啦。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/xianchang.jpg" alt="参赛物品" title="参赛物品"><br>  第二天现场答辩，为什么我会强调一定要控制好微课时长，因为他只给10分钟的答辩时间，而正正子与负负美长达9分10秒，因此我必须在50秒内把作品介绍完，但可能吗？太难了，但这也没办法，那天答辩勉勉强强，紧张还是紧张，只能说自己的现场能力锻炼的还不够。评委老师问的问题主要是：应用了什么软件和技术，并且会挑出几张画面进行提问，然后给出一些建议。<br>  第三天是领奖日，举行颁奖仪式，现场能看到云南省很厉害的计算机老师，当我看到C语言网课的普运伟老师时感觉挺奇妙的，有意义的是可以现场看到那些优秀作品展示，同行学长的数媒动画作品被评为了优秀作品，真的很厉害，我拿到了省级二等奖也算心满意足了，</p>
+<h3 id="国赛"><a href="#国赛" class="headerlink" title="国赛"></a>国赛</h3><p>  因为疫情原因，很遗憾无法去线下参赛，本来想着能去阜阳师范大学见见世面，长长见识的，后来官方将国赛改为了线上比赛。其实我就只是想感受比赛现场的氛围，享受比赛，无法线下比赛是比较遗憾的，不过现场的话省赛也体验过了嘛，只不过我更期待国赛的现场。<br>  国赛答辩是采用腾讯会议答辩，流程都是一样的，放作品介绍作品，回答评委老师的问题。评委老师是会认真去看你写的设计和教学文档的，让我比较在意的是我教学设计文档内容写崩了，只怪我当时没好好检查文档内容，没有做到完美，小小的遗憾吧。最终国赛获得三等奖，能走到国赛在我当时看来是不敢想的，感觉一切都值了。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/rongyuqiang.jpg" alt="电荷：正正子与负负美" title="电荷：正正子与负负美"></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>其实写到这不知该怎样结尾了，前段时间陪伴了我6年的游戏《崩坏3》第一部完结了，在游戏制作组的纪录片中，编剧烧鸡老师在最后说的话令我印象深刻：  </p>
 <blockquote>
-<p>本章一句：<br>这朵世间最美好的玫瑰，星尘为泥，银河滋养。永远不会枯萎，永远在沉静宇宙中盛放。 这是我要给你的，宇宙级别的浪漫。</p>
+<p>今天的自己有没有变得比昨天更好，明天的自己会不会变得比今天更好，就像我今天坐在这里，在镜头前讲下这个故事，它只是一个普普通通的，随处可见的故事，总有一天，每个人会和这个故事告别，走向不同的方向，独属于你自己的下一页，但是那样就好，累了的话就停下脚步，怀念的话就回来看看，这个故事也一直都在，且行且看，尽力而为，不要害怕，不要后悔，就像《崩坏3》的slogan“为世界上所有的美好而战”一样，我们每个人都是在哭声中来到这个世界，但是却要笑着走向未来。</p>
 </blockquote>
-<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/illust_90738662_20220530_202311.jpg"></p>
+<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/xinlingbushou.jpg" alt="《心灵捕手》台词" title="《心灵捕手》台词"></p>
 
                 
             </div>
@@ -583,7 +566,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://invictusqiu.com/2022/07/28/Unity-%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F-%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB/">http://invictusqiu.com/2022/07/28/Unity-%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F-%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB/</a>
+                    <a href="http://invictusqiu.com/2023/03/18/Electric%20Charge-zhengfumei/">http://invictusqiu.com/2023/03/18/Electric%20Charge-zhengfumei/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -620,11 +603,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Unity/">
-                                    <span class="chip bg-color">Unity</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -1062,11 +1041,49 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/01/16/%E6%A0%A1%E5%9B%AD%E5%AF%BC%E6%B8%B8%E7%B3%BB%E7%BB%9F/">
+                <a href="/2023/03/18/Electric%20Charge-zhengfumei/">
+                    <div class="card-image">
+                        
+                        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/ZhengFuCover.png" class="responsive-img" alt="中国大学生计算机设计大赛作品——电荷：正正子与负负美">
+                        
+                        <span class="card-title">中国大学生计算机设计大赛作品——电荷：正正子与负负美</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            2021年第14届中国大学生计算机设计大赛获奖作品《电荷：正正子与负负美》设计思路
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            InvictusEd
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/01/16/CampusGuideSystem/">
                     <div class="card-image">
                         
                         <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Guide1.png" class="responsive-img" alt="C语言课程设计-校园导游系统">
@@ -1081,9 +1098,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1101,54 +1118,6 @@
                     
                     <a href="/tags/C/">
                         <span class="chip bg-color">C</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/02/27/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E4%B8%80/">
-                    <div class="card-image">
-                        
-                        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/illust_89703601_20220309_211943.png" class="responsive-img" alt="Java学习记录 (一)">
-                        
-                        <span class="card-title">Java学习记录 (一)</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            学习Java这一优秀的程序设计语言令我感到宁静，没有学习C++时那种繁杂的情绪，此系列文章将记录我学习Java的过程
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-27
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
