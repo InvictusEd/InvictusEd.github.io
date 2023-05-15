@@ -18,7 +18,7 @@
 
 
     <title>C语言课程设计-校园导游系统 | Makuvi湫</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="https://invictusqiu.oss-cn-beijing.aliyuncs.com/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -55,7 +55,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">Makuvi湫</span>
                 </a>
@@ -143,7 +143,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">Makuvi湫</div>
         <div class="logo-desc">
@@ -496,7 +496,7 @@
 <p>接下来就将地图写入到系统中，就纯靠 printf 画图了<br>现在我们的地图模块就设计好了。但是现在只是一个没有任何信息的图，之后还将导入景点编号、景点信息、边权值。</p>
 <h3 id="创建数据结构并初始化"><a href="#创建数据结构并初始化" class="headerlink" title="创建数据结构并初始化"></a>创建数据结构并初始化</h3><p>将我们测量好的数据保存于相应的.txt文件中，这里我将景点编号保存在<strong>Number.txt</strong>文件，景点名称保存在<strong>Name.txt</strong>文件，景点信息保存在<strong>info.txt</strong>文件，各两点间的距离（边权值）保存在<strong>Distance.txt</strong>文件。  </p>
 <p>然后创建我们所需的数据结构</p>
-<pre class="line-numbers language-none"><code class="language-none">#define N 15				//顶点数目值
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define N 15				//顶点数目值
 #define M 22				//边数目值
 #define VexType string		//顶点数据类型
 #define EdgeType int		//边数据类型
@@ -518,7 +518,7 @@ typedef struct Graph
 	int vnum, ednum;	//顶点数、边数
 }Graph;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>初始化</p>
-<pre class="line-numbers language-none"><code class="language-none">//初始化图的顶点表，邻接矩阵等
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//初始化图的顶点表，邻接矩阵等
 void InitGraph(Graph&amp; G)
 {
 	//初始化边表
@@ -531,7 +531,7 @@ void InitGraph(Graph&amp; G)
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>插入顶点和边</p>
-<pre class="line-numbers language-none"><code class="language-none">//插入点函数，改变顶点表
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//插入点函数，改变顶点表
 void InsertNode(Graph&amp; G, VexType v)
 {
 	if (G.vnum &lt; N)
@@ -558,7 +558,7 @@ void InsertEdge(Graph&amp; G, VexType v, VexType w, int weight)
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>创建图，读取文件导入数据</p>
-<pre class="line-numbers language-none"><code class="language-none">//创建图功能实现函数
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//创建图功能实现函数
 void CreatGraph(Graph&amp; G)
 {
 	int vn, an;	//顶点数，边数
@@ -823,7 +823,7 @@ void CreatGraph(Graph&amp; G)
 <p>A-D:4<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra10.png"></p>
 <p>A-E: A-D-E:10<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra11.png"></p>
 <p>A-F: A-D-E-C-F:16<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra12.png"></p>
-<h3 id="代码实现Dijkstra算法"><a href="#代码实现Dijkstra算法" class="headerlink" title="代码实现Dijkstra算法"></a>代码实现Dijkstra算法</h3><pre class="line-numbers language-none"><code class="language-none">#define INF 0x3f3f3f3f	//作为最大值
+<h3 id="代码实现Dijkstra算法"><a href="#代码实现Dijkstra算法" class="headerlink" title="代码实现Dijkstra算法"></a>代码实现Dijkstra算法</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define INF 0x3f3f3f3f	//作为最大值
 
 //Dijkstra算法全局变量
 bool S[N];	//顶点集
@@ -890,7 +890,7 @@ void Path(Graph G, int v)
 <ul>
 <li>用户只需输入起点和终点，系统就会为用户提供最短路径。  </li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">//调用最短路径-Dijkstra算法
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//调用最短路径-Dijkstra算法
 void Shortest_Dijkstra(Graph&amp; G)
 {
 	string vname;
@@ -956,7 +956,7 @@ void Shortest_Dijkstra(Graph&amp; G)
 
 <h3 id="导游系统信息查询功能"><a href="#导游系统信息查询功能" class="headerlink" title="导游系统信息查询功能"></a>导游系统信息查询功能</h3><p>信息查询功能很简单，把预先准备的景点信息文件读取到程序的景点数据结构中，然后输出它就行了。  </p>
 <p>部分代码展示</p>
-<pre class="line-numbers language-none"><code class="language-none">void NameFile(Spot spt[])
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">void NameFile(Spot spt[])
 {
 	int count = 0;
 	int i;
@@ -1006,7 +1006,7 @@ void printInfo(Spot spt[], int i)
 </ul>
 <p>首先我们初始化景点类型数据结构，然后将各个景点进行类型分类，然后加入景点类型查询模块，后面嵌套一下景点信息查询模块。</p>
 <p>部分代码展示：</p>
-<pre class="line-numbers language-none"><code class="language-none">#define TN 5				//类型数目值
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define TN 5				//类型数目值
 
 //景点类型数据结构
 typedef struct SpotType

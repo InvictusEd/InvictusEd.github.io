@@ -18,7 +18,7 @@
 
 
     <title>Java学习记录 (一) | Makuvi湫</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="https://invictusqiu.oss-cn-beijing.aliyuncs.com/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -55,7 +55,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">Makuvi湫</span>
                 </a>
@@ -143,7 +143,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">Makuvi湫</div>
         <div class="logo-desc">
@@ -489,19 +489,19 @@
 <p>2014年，<strong>Java 8</strong> 终于发布，在近20年中这个版本发生的改变最大。<br>Java 8 包含了一种“函数式”编程方式，可以很容易地表述并发执行地计算。所有编程语言都必须与时俱进，Java 在这方面显示出了非凡的能力。</p>
 <p>2017年 <strong>Java 9</strong> 发布，从2018年开始，每6个月就会发布一个 Java 版本，以支持更快地引入新特性。某些版本（ <em><strong>如 Java 11</strong></em> ）设计为长期支持的版本。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Java.jpg"></p>
 <h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><h3 id="Java-程序的开始"><a href="#Java-程序的开始" class="headerlink" title="Java 程序的开始"></a>Java 程序的开始</h3><p>每一个 Java 程序的开头都有那么一段代码</p>
-<pre class="line-numbers language-none"><code class="language-none">public class XXX {
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">public class XXX {
     public static void main(String[] args) {
     }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>今后我们写的代码都是放在这个大括号里的。<br>例如我们要输出一段文字</p>
-<pre class="line-numbers language-none"><code class="language-none">public class Hello {
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">public class Hello {
     public static void main(String[] args) {
         System.out.println("Hello World");
     }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>程序运行的结果是 <strong>Hello World</strong></p>
 <h3 id="写一段找零的代码"><a href="#写一段找零的代码" class="headerlink" title="写一段找零的代码"></a>写一段找零的代码</h3><p>现在我们可以着手写一个简单的找零钱程序。<br>这样的程序要求我们得需要输入一个<strong>商品价格</strong>以及<strong>票面金额</strong>，然后计算机才能给我们找零。<br>Java 给我们提供了输入方式<code>Scanner in = new Scanner(System.in);</code><br>此时在程序的开头出现了这样一段代码<code>import java.util.Scanner;</code><br>之后我们就可以简单完成它了</p>
-<pre class="line-numbers language-none"><code class="language-none">import java.util.Scanner;
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">import java.util.Scanner;
 
 public class Hello {
     public static void main(String[] args) {
@@ -527,7 +527,7 @@ public class Hello {
 20
 100 - 20 = 80<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><p>说到判断，必然少不了 <strong>if</strong> 语句，<strong>if</strong> 语句表达式的结果无疑是两个： <strong>true</strong> 和 <strong>false</strong><br>以下是一段判断年龄大小的程序</p>
-<pre class="line-numbers language-none"><code class="language-none">import java.util.Scanner;
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">import java.util.Scanner;
 
 public class Hello {
     public static void main(String[] args) {
@@ -555,7 +555,7 @@ public class Hello {
 <p>20当然是小于35的，所以当括号中的条件满足时，执行 if 语句下大括号中的内容  </p>
 </blockquote>
 <h3 id="两个浮点数是否相等"><a href="#两个浮点数是否相等" class="headerlink" title="两个浮点数是否相等"></a>两个浮点数是否相等</h3><p>Java 中的浮点数的比较还是值得讨论的</p>
-<pre class="line-numbers language-none"><code class="language-none">import java.util.Scanner;
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">import java.util.Scanner;
 
 public class Hello {
     public static void main(String[] args) {
@@ -573,7 +573,7 @@ public class Hello {
 <p>1e-6 表示 1×10^-6  </p>
 </blockquote>
 <p>最终程序为</p>
-<pre class="line-numbers language-none"><code class="language-none">import java.util.Scanner;
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">import java.util.Scanner;
 
 public class Hello {
     public static void main(String[] args) {
@@ -590,7 +590,7 @@ a=1.0b=0.9999999999999999
 true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><strong>判断两个浮点数是否相等我们得用这种特殊的方式</strong></p>
 <h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><p>关于 switch 语句，它是进行判断选择的，它常与 case break default 一起使用。case 是分支，break 是结束 switch 语句，<br><strong>假如没有 break，程序还会执行下一个 case</strong><br>default 的作用是如果变量表达式的量与所有 case 语句的常量都不相符，就执行 default 语句中的语句。</p>
-<pre class="line-numbers language-none"><code class="language-none">import java.util.Scanner;
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">import java.util.Scanner;
 
 public class Hello {
     public static void main(String[] args) {
