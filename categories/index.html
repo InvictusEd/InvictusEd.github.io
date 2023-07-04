@@ -336,7 +336,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "https://invictusqiu.oss-cn-beijing.aliyuncs.com/" + new Date().getDay() + '.jpg';
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
     $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
@@ -403,6 +403,15 @@
                 </a>
                 
                 
+                <a href="/categories/HTML/" title="HTML: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #F8F9F9;">HTML
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
             </div>
         </div>
     </div>
@@ -445,7 +454,7 @@
                     color: '#3C4858'
                 }
             },
-            indicator: [{"name":"Hexo","max":2},{"name":"C","max":2},{"name":"Java","max":2},{"name":"Makrdown","max":2},{"name":"Unity","max":2}],
+            indicator: [{"name":"Hexo","max":2},{"name":"C","max":2},{"name":"Java","max":2},{"name":"Makrdown","max":2},{"name":"Unity","max":2},{"name":"HTML","max":2}],
             nameGap: 5,
             center: ['50%','55%'],
             radius: '66%'
@@ -456,7 +465,7 @@
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data : [
                 {
-                    value : [1,1,1,1,1],
+                    value : [1,1,1,1,1,1],
                     name : '文章分类数量'
                 }
             ]
@@ -541,7 +550,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.2k</span>
+                        class="white-color">19.4k</span>
             
             
             
