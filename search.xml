@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>算法</title>
+      <link href="/2023/09/13/algo-1/"/>
+      <url>/2023/09/13/algo-1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="两数之和（简单）"><a href="#两数之和（简单）" class="headerlink" title="两数之和（简单）"></a>两数之和（简单）</h2><p>给定一个整数数组 nums 和目标值 target，在该数组中找出<strong>和为目标值</strong> target 的那两个整数，返回它们数组下标。</p><blockquote><p>输入：nums = [2,7,11,15], target = 9<br>输出：[0,1]<br>解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</p></blockquote><p>解法一：迭代双for循环暴力枚举<br>解法二：哈希表</p><pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">class Solution {    public int[] twoSum(int[] nums, int target) {        // 创建一个哈希表&lt;value, index&gt;        Map&lt;Integer, Integer&gt; hashtable = new HashMap&lt;Integer, Integer&gt;();        // 遍历数组        for (int i = 0; i &lt; nums.length; i++){            // 检查哈希表中是否有另一个数            if (hashtable.containsKey(target - nums[i])){                return new int[]{hashtable.get(target - nums[i]), i};            }            // 如果false，则将此数插入哈希表            hashtable.put(nums[i], i);        }        // 抛出异常，参数错误        throw new IllegalArgumentException("No two sum solution");    }}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HTML基础标签+CSS样式（三）</title>
       <link href="/2023/07/06/Front-end-3/"/>
       <url>/2023/07/06/Front-end-3/</url>
