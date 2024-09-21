@@ -1,0 +1,1999 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="C语言课程设计-校园导游系统, Makuvi湫">
+    <meta name="description" content="C语言数据结构课程设计校园导游系统">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>C语言课程设计-校园导游系统 | Makuvi湫</title>
+    <link rel="icon" type="image/png" href="https://invictusqiu.oss-cn-beijing.aliyuncs.com/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Makuvi湫" type="application/atom+xml">
+</head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://invictusqiu.oss-cn-beijing.aliyuncs.com/background.jpg);
+       background-repeat:no-repeat;
+       background-size: 100% 100%;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Makuvi湫</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Makuvi湫</div>
+        <div class="logo-desc">
+            
+            有的鸟儿是注定关不住的，它的每一片羽毛都闪烁着自由的光芒
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://invictusqiu.oss-cn-beijing.aliyuncs.com/Guide1.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">C语言课程设计-校园导游系统</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C/" class="post-category">
+                                C
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-01-16
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.5k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>  本篇文章的目的是记录下我设计并实现《 C 校园导游系统》的过程，其实我本来想要把这个系统做的很好，但是奈何本学期出现了一些突发事件，导致时间精力都很有限，所以只能暂时搁置了。<br>  选择这个项目的初心是为了锻炼自己，但最终我在它身上只花费了3天时间，作为达到数据结构课程设计的要求它是完全满足的，但是对我而言离我想象中的要求还差得远，就像它只是一个游戏demo，并不是成品。<br>  那为什么我还要拿出来做文章呢？我能力有限无法真正完成它，大概率以后也没时间去做它了，但是记录下万一哪天用上了呢，当然也可以给后辈一个参考价值吧。<br>  不多说了，现在进入正题吧。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ul>
+<li><p>提供直观的学校地图界面供用户进行查看，以点作为景点，以边作为道路；  </p>
+</li>
+<li><p>提供景点相关信息查询功能，能够查询景点位置和输出景点的相关信息；  </p>
+</li>
+<li><p>提供问路查询功能，用户只需输入起点和终点，系统就会为用户提供最短路径；  </p>
+</li>
+<li><p>提供景点类型查询功能，用户可查询相关类型建筑及其信息； </p>
+</li>
+<li><p><strong>总结：《校园导游咨询系统》需要为用户提供一个可视化的校园平面图，并且提供景点查询功能和最短路径查询功能，满足用户的对校园导游系统的基本需求。</strong></p>
+</li>
+</ul>
+<h2 id="设计过程"><a href="#设计过程" class="headerlink" title="设计过程"></a>设计过程</h2><h3 id="地图设计"><a href="#地图设计" class="headerlink" title="地图设计"></a>地图设计</h3><p>要制作导游系统，首先就是明确我们的导游范围，为了明确如何画出地图，我查看了我们学校的地图。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/yxnumap.png" alt="玉溪师范学院地图" title="玉溪师范学院地图"><br>然后根据地图筛选出了15个景点建筑加入到了这次的系统地图中。<br>将15个地点抽象出来构成图结构<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/map1.png"></p>
+<blockquote>
+<p>1.东北门 2.大学生活动中心 3.实训大楼A 4.滋味苑 5.龙马公寓 6.后山 7.学生宿舍F,G幢 8.学生宿舍K,L,M,N幢 9.主教学区 10.品味苑 11.艺术综合楼 12.图书馆 13.运动场 14.东南门 15.传习馆</p>
+</blockquote>
+<p>OK,就这样一份地图模板就制作好了，也可以说图结构的顶点确定好了，那么接下来就是确定边权值。<br>测量边权值的方法，我这里我采用高德地图的测距小工具，几分钟就全部测量好了，将测量好的数据保存起来，之后用得到。  </p>
+<p>接下来就将地图写入到系统中，就纯靠 printf 画图了<br>现在我们的地图模块就设计好了。但是现在只是一个没有任何信息的图，之后还将导入景点编号、景点信息、边权值。</p>
+<h3 id="创建数据结构并初始化"><a href="#创建数据结构并初始化" class="headerlink" title="创建数据结构并初始化"></a>创建数据结构并初始化</h3><p>将我们测量好的数据保存于相应的.txt文件中，这里我将景点编号保存在<strong>Number.txt</strong>文件，景点名称保存在<strong>Name.txt</strong>文件，景点信息保存在<strong>info.txt</strong>文件，各两点间的距离（边权值）保存在<strong>Distance.txt</strong>文件。  </p>
+<p>然后创建我们所需的数据结构</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define N 15				//顶点数目值
+#define M 22				//边数目值
+#define VexType string		//顶点数据类型
+#define EdgeType int		//边数据类型
+#define INF 0x3f3f3f3f		//作为最大值
+
+//景点数据结构
+typedef struct Spot
+{
+	int number;
+	char name[20];
+	char SpotInfo[50];
+}Spot;
+
+//图的数据结构
+typedef struct Graph
+{
+	VexType V[N];		//顶点表
+	EdgeType E[N][N];	//边表
+	int vnum, ednum;	//顶点数、边数
+}Graph;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>初始化</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//初始化图的顶点表，邻接矩阵等
+void InitGraph(Graph&amp; G)
+{
+	//初始化边表
+	for (int i = 0; i &lt; N; i++) {
+		for (int j = 0; j &lt; N; j++) {
+			G.E[i][j] = INF;
+		}
+	}
+	G.ednum = G.vnum = 0;	//初始化顶点数、边数
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>插入顶点和边</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//插入点函数，改变顶点表
+void InsertNode(Graph&amp; G, VexType v)
+{
+	if (G.vnum &lt; N)
+	{
+		G.V[G.vnum++] = v;
+	}
+}
+
+//插入边函数，改变邻接矩阵
+void InsertEdge(Graph&amp; G, VexType v, VexType w, int weight)
+{
+	int p1, p2;
+	p1 = p2 = -1;
+	for (int i = 0; i &lt; G.vnum; i++)
+	{
+		if (G.V[i] == v)p1 = i;
+		if (G.V[i] == w)p2 = i;
+	}
+	if (p1 != -1 &amp;&amp; p2 != -1)
+	{
+		G.E[p1][p2] = G.E[p2][p1] = weight;	//无向图邻接矩阵对称
+		G.ednum++;
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>创建图，读取文件导入数据</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//创建图功能实现函数
+void CreatGraph(Graph&amp; G)
+{
+	int vn, an;	//顶点数，边数
+	vn = N;
+	an = M;
+	int count = 0;
+	char str1[20], str2[20];
+	string s1, s2;
+	int temp = 0;
+	FILE* fp1 = fopen("Number.txt", "r");
+	FILE* fp2 = fopen("Distance.txt", "r");
+	if (fp1 == NULL &amp;&amp; fp2 == NULL)
+	{
+		printf("打开文件失败！\n");
+		exit(0);
+	}
+	//从文件中读取景点编号
+	for (int i = 0; i &lt; N; i++)
+	{
+		count = fscanf(fp1, "%s", str1);
+		if (count == -1)exit(0);
+		s1 = str1;
+		InsertNode(G, s1);
+	}
+	//从文件中读取所有边的权值
+	for (int i = 0; i &lt; M; i++)
+	{
+		count = fscanf(fp2, "%s %s %d", str1, str2, &amp;temp);
+		if (count == -1)exit(0);
+		s1 = str1;
+		s2 = str2;
+		InsertEdge(G, s1, s2, temp);
+	}
+	fclose(fp1);
+	fclose(fp2);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>到这里我们的图就创建完成了</strong></p>
+<h3 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h3><p>无论是在教材还是各类算法书籍中都少不了的最短路径算法Dijkstra算法，是由荷兰计算机科学家 Edsger Wybe Dijkstra 在1956年发现的算法，戴克斯特拉算法使用类似广度优先搜索的方法解决赋权图的单源最短路径问题。Dijkstra 算法原始版本仅适用于找到两个顶点之间的最短路径，后来更常见的变体固定了一个顶点作为源结点然后找到该顶点到图中所有其它结点的最短路径，产生一个最短路径树。本算法每次取出未访问结点中距离最小的，用该结点更新其他结点的距离。  </p>
+<blockquote>
+<p>核心思想：按路径长度递增次序产生算法，将图数据结构分为顶点集V和边集E，接下来初始化图的顶点表和邻接矩阵，将所有边的权值设置为无穷大，然后插入点改变顶点表，插入边改变邻接矩阵。之后从第一个顶点开始计算最短路径，假如该顶点与其他顶点有边连接，则将其边权值加入到最短路径集，然后依次比较，最后选出最小的边权值，并记录前驱，然后从前驱开始又执行边权值的比较，直到最后到达终点结束，最短路径值即之前记录过的前驱的边权值相加的最终结果。</p>
+</blockquote>
+<p>这样讲还是难懂，那我们从头开始了解Dijkstra算法吧</p>
+<p>下面以该图为例讲解Dijkstra算法寻找最短路径的过程<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra2.png"><br>以A为起始点，求A到BCDEF的最短路径  </p>
+<p>要求A到其他5个点的最短距离，我们构造一个数组记录A到BCDEF5个点的路径距离。  </p>
+<p>需要注意的是</p>
+<ul>
+<li>如果A能够直接到达节点，则使用路径长度，即边权值作为其距离。</li>
+<li>如果A节点不能够直接到达节点则用无穷大表示A到该点的距离。</li>
+<li>任何点到自身的距离都为0  </li>
+</ul>
+<p>在最开始A到其余点的数组如下  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>10</td>
+<td>∞</td>
+<td>4</td>
+<td>∞</td>
+<td>∞</td>
+</tr>
+</tbody></table>
+<p>Dijkstra算法的思想是：从以上最短距离数组中每次选择一个最近的点，将其作为下一个点，然后重新计算从起始点经过该点到其他所有点的距离，并更新最短距离的值，已经选取过的点就是确定了最短路径的点，不再参与下一次计算。  </p>
+<p>我们来看看实际的选取过程</p>
+<h4 id="第一次选取"><a href="#第一次选取" class="headerlink" title="第一次选取"></a>第一次选取</h4><p>构建好的数组是这样的  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>10</td>
+<td>∞</td>
+<td>4</td>
+<td>∞</td>
+<td>∞</td>
+</tr>
+<tr>
+<td>第一步选取该最短路径数组中值最小的一个点。因为A点到本身不需要参与运算，所以从剩下的点中选择最短的一个是D。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第二步以<strong>A-D</strong>的距离为最近距离更新A点到所有点的距离。即相当于A点经过D点，计算A到其他点的距离。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra3.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-C:19<br>A-D: A-D:4<br>A-E: A-D-E:10<br>A-F: A-D-F:∞  </p>
+<p>将现在A到各个点的距离和之前相比较，取最小值，更新BCE的距离，得到新的最短距离数组  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>19</td>
+<td>4</td>
+<td>10</td>
+<td>∞</td>
+</tr>
+</tbody></table>
+<h4 id="第二次选取"><a href="#第二次选取" class="headerlink" title="第二次选取"></a>第二次选取</h4><p>AD两点已经选取，不再参与下面的计算。  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>19</td>
+<td>4</td>
+<td>10</td>
+<td>∞</td>
+</tr>
+</tbody></table>
+<p>以B为最新点，更新最短距离数组<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra4.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-B-C:14<br>A-D: A-D:4<br>A-E: A-D-B-E:12<br>A-F: A-D-B-F:∞</p>
+<p>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>C点由19更新成14，E点走A-D-E为10，<strong>距离更短所以不更新</strong>，得到如下数组：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>14</td>
+<td>4</td>
+<td>10</td>
+<td>∞</td>
+</tr>
+</tbody></table>
+<h4 id="第三次选取"><a href="#第三次选取" class="headerlink" title="第三次选取"></a>第三次选取</h4><p>第一步：选取除了A B D节点之外的剩余节点中最短节点，为点E<br>第二步：以E点为最新节点，更新最短路径数组<br>因为在上一步中计算达到E点的距离时没有更新距离，A-D-E 为10 最短，所以更新E点到B C F点的距离时走的路径是A-D-E。注意这里的最短距离有对应的路径，选择最小值就是选择最短距离。<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra5.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: A-D:4<br>A-E: A-D-E:10<br>A-F: A-D-E-F:22<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新C点走A-D-E-C为11，比之前的A-D-B-C 14距离更近，更新到F点距离，得到如下数组：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>22</td>
+</tr>
+</tbody></table>
+<h4 id="第四次选取"><a href="#第四次选取" class="headerlink" title="第四次选取"></a>第四次选取</h4><p>第一步：选取除了A B D E节点之外的剩余节点中最短节点，为点C<br>第二步：以C点为最新节点，更新最短路径数组<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra6.png"><br>A-A: 0<br>A-B: A-D-B:6<br>A-C: A-D-E-C:11<br>A-D: 4<br>A-E: A-D-E:10<br>A-F: A-D-E-C-F:16<br>对比现在的最短距离和上一个数组的距离，到相同节点选最小的，更新最短距离数组。<br>更新到F点距离，可以得到如下数组：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>16</td>
+</tr>
+</tbody></table>
+<h4 id="第五次选取"><a href="#第五次选取" class="headerlink" title="第五次选取"></a>第五次选取</h4><p>第一步：选取除了A B C D E节点之外的剩余节点中最短节点，也就是最后一个节点：F<br>第二步：以F点为最新节点，更新最短路径数组。由于F点是最后一个点，所以也不用更新数组，目前的数组就是所求数组将F点加入最短路径范围中，此时所有的点都加入了最短路径范围，也就是说A点到所有点的距离都找到了。最终得出的距离值为：<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra7.png"><br>最终得到的结果为：  </p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>16</td>
+</tr>
+</tbody></table>
+<h4 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h4><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>6</td>
+<td>11</td>
+<td>4</td>
+<td>10</td>
+<td>16</td>
+</tr>
+</tbody></table>
+<p>A-A: 0  </p>
+<p>A-B: A-D-B:6<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra8.png"></p>
+<p>A-C: A-D-E-C:11<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra9.png"></p>
+<p>A-D:4<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra10.png"></p>
+<p>A-E: A-D-E:10<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra11.png"></p>
+<p>A-F: A-D-E-C-F:16<br><img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/Dijkstra12.png"></p>
+<h3 id="代码实现Dijkstra算法"><a href="#代码实现Dijkstra算法" class="headerlink" title="代码实现Dijkstra算法"></a>代码实现Dijkstra算法</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define INF 0x3f3f3f3f	//作为最大值
+
+//Dijkstra算法全局变量
+bool S[N];	//顶点集
+int D[N];	//到各个顶点的最短路径
+int Pr[N];	//记录前驱
+
+void Dijkstra(Graph G, int v)
+{
+	//初始化
+	int n = G.vnum;	//n为图的顶点个数
+	for (int i = 0; i &lt; n; i++)
+	{
+		S[i] = false;
+		D[i] = G.E[v][i];
+		if (D[i] &lt; INF)
+		{
+			Pr[i] = v;	//v与i连接，v为前驱
+		}
+		else
+		{
+			Pr[i] = -1;
+		}
+	}
+	S[v] = true;
+	D[v] = 0;
+	//初始化结束，求最短路径，并加入S集
+	for (int i = 1; i &lt; n; i++)
+	{
+		int min = INF;
+		int temp;
+		for (int w = 0; w &lt; n; w++)
+		{
+			if (!S[w] &amp;&amp; D[w] &lt; min)		//某点temp未加入S集，且为当前最短路径
+			{
+				temp = w;
+				min = D[w];
+			}
+		}
+		S[temp] = true;
+		//更新从源点出发至其余点的最短路径 通过temp
+		for (int w = 0; w &lt; n; w++)
+		{
+			if (!S[w] &amp;&amp; D[temp] + G.E[temp][w] &lt; D[w])
+			{
+				D[w] = D[temp] + G.E[temp][w];
+				Pr[w] = temp;
+			}
+		}
+	}
+}
+
+//输出最短路径
+void Path(Graph G, int v)
+{
+	if (Pr[v] == -1)
+	{
+		return;
+	}
+	Path(G, Pr[v]);
+	cout &lt;&lt; G.V[Pr[v]] &lt;&lt; "-&gt;";
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="导游系统问路查询功能"><a href="#导游系统问路查询功能" class="headerlink" title="导游系统问路查询功能"></a>导游系统问路查询功能</h3><p>在了解以及实现了Dijkstra算法之后，我们还要在程序中调用它。  </p>
+<ul>
+<li>用户只需输入起点和终点，系统就会为用户提供最短路径。  </li>
+</ul>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">//调用最短路径-Dijkstra算法
+void Shortest_Dijkstra(Graph&amp; G)
+{
+	string vname;
+	string vnamed;
+	int v1, v2;
+	char ch = '1';
+
+	while (true)
+	{
+		v1 = -1;
+		v2 = -1;
+		cout &lt;&lt; "请输入起点编号：";
+		cin &gt;&gt; vname;
+		for (int i = 0; i &lt; G.vnum; i++) {
+			if (G.V[i] == vname)
+			{
+				v1 = i;
+			}
+		}
+		if (v1 == -1)
+		{
+			cout &lt;&lt; "没有找到输入点！" &lt;&lt; endl;
+			system("pause");
+			system("cls");
+			drawMap();
+			continue;
+		}
+		cout &lt;&lt; "请输入终点编号：";
+		cin &gt;&gt; vnamed;
+		for (int i = 0; i &lt; G.vnum; i++) {
+			if (G.V[i] == vnamed)
+			{
+				v2 = i;
+			}
+		}
+		if (v2 == -1)
+		{
+			cout &lt;&lt; "没有找到终点！" &lt;&lt; endl;
+			system("pause");
+			system("cls");
+			drawMap();
+			continue;
+		}
+		Dijkstra(G, v1);
+		cout &lt;&lt; "\n目标点" &lt;&lt; "\t" &lt;&lt; "最短路径值" &lt;&lt; "\t" &lt;&lt; "最短路径" &lt;&lt; "\t" &lt;&lt; endl;
+		for (int i = 0; i &lt; G.vnum; i++)
+		{
+			if (i != v1 &amp;&amp; i == v2)
+			{
+				cout &lt;&lt; " " &lt;&lt; G.V[i] &lt;&lt; "\t" &lt;&lt; D[i] &lt;&lt; "米" &lt;&lt; "\t" &lt;&lt; "\t";
+				Path(G, i);
+				cout &lt;&lt; G.V[i] &lt;&lt; endl;
+			}
+		}
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>效果展示:</p>
+<pre class="line-numbers language-none"><code class="language-none">请输入起点编号：1
+请输入终点编号：5
+
+目标点  最短路径值      最短路径
+ 5      400米           1-&gt;2-&gt;4-&gt;5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="导游系统信息查询功能"><a href="#导游系统信息查询功能" class="headerlink" title="导游系统信息查询功能"></a>导游系统信息查询功能</h3><p>信息查询功能很简单，把预先准备的景点信息文件读取到程序的景点数据结构中，然后输出它就行了。  </p>
+<p>部分代码展示</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">void NameFile(Spot spt[])
+{
+	int count = 0;
+	int i;
+	FILE* fp = fopen("Name.txt", "r");
+
+	if (fp == NULL) {
+		printf("打开文件失败！\n");
+		exit(0);
+	}
+	for (i = 0; i &lt; N; i++) {
+		spt[i].number = i + 1;
+		count = fscanf(fp, "%s", spt[i].name);
+		if (count == -1) exit(0);
+		//printf("%s\n", spt[i].name);		测试代码
+	}
+	fclose(fp);
+}
+
+void InfoFile(Spot spt[])
+{
+	int count = 0;
+	int i;
+	FILE* fp = fopen("Info.txt", "r");
+
+	if (fp == NULL) {
+		printf("打开文件失败！\n");
+		exit(0);
+	}
+	for (i = 0; i &lt; N; i++) {
+		count = fscanf(fp, "%s", spt[i].SpotInfo);
+		if (count == -1)exit(0);
+		//printf("%s\n", spt[i].SpotInfo);		测试代码
+	}
+	fclose(fp);
+}
+
+void printInfo(Spot spt[], int i)
+{
+	printf("\n%d.%s\n简介：%s\n", spt[i].number, spt[i].name, spt[i].SpotInfo);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="导游系统景点类型查询功能"><a href="#导游系统景点类型查询功能" class="headerlink" title="导游系统景点类型查询功能"></a>导游系统景点类型查询功能</h3><p>功能分析：</p>
+<ul>
+<li>1个景点类型包含若干个景点</li>
+<li>用户可以查询该景点类型包含哪几个景点</li>
+<li>用户可以详细了解某一个景点的信息</li>
+</ul>
+<p>首先我们初始化景点类型数据结构，然后将各个景点进行类型分类，然后加入景点类型查询模块，后面嵌套一下景点信息查询模块。</p>
+<p>部分代码展示：</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define TN 5				//类型数目值
+
+//景点类型数据结构
+typedef struct SpotType
+{
+	string typeName;
+	Spot S[TN];
+	int number;
+}SpotType;
+
+//初始化景点类型数据结构
+void BuildingType(Spot spt[], SpotType stype[])
+{
+	stype[0].typeName = "教学楼";
+	stype[1].typeName = "学生宿舍";
+	stype[2].typeName = "食堂";
+	stype[3].typeName = "课外活动点";
+	stype[0].S[0] = spt[2];
+	stype[0].S[1] = spt[8];
+	stype[0].S[2] = spt[10];
+	stype[0].number = 3;
+	stype[1].S[0] = spt[4];
+	stype[1].S[1] = spt[6];
+	stype[1].S[2] = spt[7];
+	stype[1].number = 3;
+	stype[2].S[0] = spt[3];
+	stype[2].S[1] = spt[9];
+	stype[2].number = 2;
+	stype[3].S[0] = spt[1];
+	stype[3].S[1] = spt[5];
+	stype[3].S[2] = spt[12];
+	stype[3].S[3] = spt[14];
+	stype[3].number = 4;
+}
+
+//查询景点类型
+void ShowType(Spot spt[], SpotType stype[])
+{
+	int select = 0;
+
+	while (true)
+	{
+		cout &lt;&lt; "                                                    |==============================|" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          1." &lt;&lt; stype[0].typeName &lt;&lt; "            |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          2." &lt;&lt; stype[1].typeName &lt;&lt; "          |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          3." &lt;&lt; stype[2].typeName &lt;&lt; "              |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |          4." &lt;&lt; stype[3].typeName &lt;&lt; "        |" &lt;&lt; endl;
+		cout &lt;&lt; "                                                    |==============================|" &lt;&lt; endl;
+		cout &lt;&lt; "请选择你需要您要了解的类型：";
+		cin &gt;&gt; select;
+		getchar();
+		switch (select)
+		{
+		case 1:
+			Print_Type(stype[select - 1]);
+			break;
+		case 2:
+			Print_Type(stype[select - 1]);
+			break;
+		case 3:
+			Print_Type(stype[select - 1]);
+			break;
+		case 4:
+			Print_Type(stype[select - 1]);
+			break;
+		default:
+			cout &lt;&lt; "请输入有效选项！\n回车键继续..." &lt;&lt; endl;
+			getchar();
+			system("cls");
+			drawMap();
+			continue;
+		}
+		cout &lt;&lt; "\n您需要了解以上建筑信息吗？（输入1了解，输入0取消）：";
+		int select2;
+		int select3;
+		while (true)
+		{
+			cin &gt;&gt; select2;
+			if (select2 == 1)
+			{
+				while (true)
+				{
+					cout &lt;&lt; "\n请输入你想要了解建筑的编号（输入0取消）：";
+					cin &gt;&gt; select3;
+					if (select == 1)
+					{
+						if (select3 == 3 || select3 == 9 || select3 == 11)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+					else if (select == 2)
+					{
+						if (select3 == 5 || select3 == 7 || select3 == 8)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+					if (select == 3)
+					{
+						if (select3 == 4 || select3 == 10)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+					if (select == 4)
+					{
+						if (select3 == 2 || select3 == 6 || select3 == 13 || select3 == 15)
+						{
+							printInfo(spt, select3 - 1);
+						}
+						else if (select3 == 0)
+						{
+							break;
+						}
+						else
+						{
+							cout &lt;&lt; "请输入正确的此类型建筑编号！" &lt;&lt; endl;
+						}
+					}
+				}
+			}
+			else if (select2 == 0)
+			{
+				break;
+			}
+			else
+			{
+				cout &lt;&lt; "请输入正确选项！" &lt;&lt; endl;
+				break;
+			}
+			if (select3 == 0) break;
+		}
+	}
+} <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本次的校园导游系统是我的数据结构课程设计，希望这篇文章能够帮我记下Dijkstra算法的实际运用，今后遇到相应的算法也能够有解决思路。  </p>
+<p>本次的导游系统介绍就到这了，有需要看源代码的朋友可以到我的 GitHub 仓库中查看。  </p>
+<h2 id="链接："><a href="#链接：" class="headerlink" title="链接："></a>链接：</h2><p><a target="_blank" rel="noopener" href="https://github.com/InvictusEd/Campus-tour-guide-system.git">校园导游系统</a></p>
+<blockquote>
+<p>本章一句：<br>当你因为错过太阳而哭泣的时候，你也要错过群星了。——泰戈尔《飞鸟集》</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">InvictusEd</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://invictusqiu.com/2023/01/16/CampusGuideSystem/">http://invictusqiu.com/2023/01/16/CampusGuideSystem/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">InvictusEd</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">非常感谢你支持我！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/03/18/ElectricCharge-zhengfumei/">
+                    <div class="card-image">
+                        
+                        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/ZhengFuCover.png" class="responsive-img" alt="中国大学生计算机设计大赛作品——电荷：正正子与负负美">
+                        
+                        <span class="card-title">中国大学生计算机设计大赛作品——电荷：正正子与负负美</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            2021年第14届中国大学生计算机设计大赛获奖作品《电荷：正正子与负负美》设计思路
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            InvictusEd
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/07/28/Unity-AnimationSystem-skeletal%20animation/">
+                    <div class="card-image">
+                        
+                        <img src="https://invictusqiu.oss-cn-beijing.aliyuncs.com/e438e072-0dee-4ab9-909e-bcf263d2b67f.png" class="responsive-img" alt="Unity游戏引擎-动画系统-骨骼动画">
+                        
+                        <span class="card-title">Unity游戏引擎-动画系统-骨骼动画</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本期文章将介绍游戏中的骨骼动画，以及用Unity对骨骼动画进行实践操作
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Unity/" class="post-category">
+                                    Unity
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Unity/">
+                        <span class="chip bg-color">Unity</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6879836742"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2024</span>
+            
+            <a href="/about" target="_blank">InvictusEd</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">21.3k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "2";
+                        var startDate = "1";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+                <span id="icp"><img src="/medias/icp.png"
+                                    style="vertical-align: text-bottom;"/>
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=53042402000032">滇公网安备 53042402000032号&nbsp;&nbsp;</a>
+                <a href="http://beian.miit.gov.cn/" target="_blank">滇ICP备2023001606号-1</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/InvictusEd" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1244536991@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1244536991" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1244536991" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
